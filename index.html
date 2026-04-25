@@ -817,8 +817,8 @@ footer a:hover{color:var(--text)}
 
 /* Clean Messages */
 .ia-msgs {
-  flex:1; overflow-y:auto; padding:36px 48px;
-  display:flex; flex-direction:column; gap:32px;
+  flex:1; overflow-y:auto; padding:24px 40px;
+  display:flex; flex-direction:column; gap:14px;
 }
 .ia-msgs::-webkit-scrollbar { width:3px }
 .ia-msgs::-webkit-scrollbar-track { background:transparent }
@@ -831,28 +831,28 @@ footer a:hover{color:var(--text)}
 .ia-msg.ai { align-self:flex-start; align-items:flex-start }
 .ia-msg-who {
   font-family:var(--mono); font-size:9px; color:#333;
-  letter-spacing:1.2px; text-transform:uppercase; margin-bottom:9px;
+  letter-spacing:1.2px; text-transform:uppercase; margin-bottom:5px;
 }
 .ia-msg.user .ia-msg-who { color:#333 }
 .ia-bubble {
-  font-size:14px; line-height:1.78; color:#b0b0b0;
+  font-size:13.5px; line-height:1.6; color:#b0b0b0;
 }
 .ia-msg.user .ia-bubble {
   background:#1c1c1c; border:1px solid rgba(255,255,255,.09);
-  border-radius:16px 16px 4px 16px; padding:13px 18px;
-  color:#d8d8d8; font-size:14px;
+  border-radius:16px 16px 4px 16px; padding:10px 16px;
+  color:#d8d8d8; font-size:13.5px;
 }
 .ia-msg.ai .ia-bubble { background:none; padding:0 }
 .ia-msg.ai .ia-bubble strong { color:#d0d0d0 }
-.ia-msg.ai .ia-bubble h2 { color:#e0e0e0; font-size:16px; margin:16px 0 6px; font-family:'Clash Display',sans-serif; font-weight:600 }
-.ia-msg.ai .ia-bubble h3 { color:#d0d0d0; font-size:14px; margin:14px 0 5px; font-weight:700 }
-.ia-msg.ai .ia-bubble h4 { color:#c0c0c0; font-size:13px; margin:12px 0 4px; font-weight:700 }
-.ia-msg.ai .ia-bubble ul,.ia-msg.ai .ia-bubble ol { padding-left:20px; margin:8px 0; display:flex; flex-direction:column; gap:4px }
-.ia-msg.ai .ia-bubble li { color:#888; font-size:14px; line-height:1.7 }
-.ia-msg.ai .ia-bubble hr { border:none; border-top:1px solid rgba(255,255,255,.07); margin:14px 0 }
-.ia-msg.ai .ia-bubble table { border-collapse:collapse; width:100%; margin:12px 0; font-size:13px }
-.ia-msg.ai .ia-bubble th { padding:8px 12px; border:1px solid rgba(255,255,255,.08); color:#d0d0d0; font-weight:600; text-align:left; background:rgba(255,255,255,.03) }
-.ia-msg.ai .ia-bubble td { padding:8px 12px; border:1px solid rgba(255,255,255,.06); color:#888 }
+.ia-msg.ai .ia-bubble h2 { color:#e0e0e0; font-size:15px; margin:10px 0 4px; font-family:'Clash Display',sans-serif; font-weight:600 }
+.ia-msg.ai .ia-bubble h3 { color:#d0d0d0; font-size:13.5px; margin:8px 0 3px; font-weight:700 }
+.ia-msg.ai .ia-bubble h4 { color:#c0c0c0; font-size:13px; margin:7px 0 2px; font-weight:700 }
+.ia-msg.ai .ia-bubble ul,.ia-msg.ai .ia-bubble ol { padding-left:18px; margin:5px 0; display:flex; flex-direction:column; gap:2px }
+.ia-msg.ai .ia-bubble li { color:#888; font-size:13.5px; line-height:1.55 }
+.ia-msg.ai .ia-bubble hr { border:none; border-top:1px solid rgba(255,255,255,.07); margin:8px 0 }
+.ia-msg.ai .ia-bubble table { border-collapse:collapse; width:100%; margin:8px 0; font-size:13px }
+.ia-msg.ai .ia-bubble th { padding:6px 10px; border:1px solid rgba(255,255,255,.08); color:#d0d0d0; font-weight:600; text-align:left; background:rgba(255,255,255,.03) }
+.ia-msg.ai .ia-bubble td { padding:6px 10px; border:1px solid rgba(255,255,255,.06); color:#888 }
 
 /* Typing dots */
 .ia-typing { display:flex; gap:5px; align-items:center; padding:4px 0 }
@@ -898,13 +898,13 @@ footer a:hover{color:var(--text)}
 @media(max-width:900px){
   #app-ia { flex-direction:column !important }
   .ia-sidebar { display:none }
-  .ia-msgs { padding:20px 18px; gap:24px }
+  .ia-msgs { padding:16px 18px; gap:12px }
   .ia-input-wrap { padding:14px 18px 20px }
   .ia-topbar { padding:14px 18px }
   .ia-msg.user { max-width:85% }
 }
 @media(max-width:600px){
-  .ia-msgs { padding:16px 14px }
+  .ia-msgs { padding:12px 14px; gap:10px }
   .ia-input-wrap { padding:10px 14px 16px }
 }
 
@@ -1712,8 +1712,8 @@ footer a:hover{color:var(--text)}
         <div class="ia-msg ai">
           <div class="ia-msg-who">Blueprint IA</div>
           <div class="ia-bubble">
-            Olá. Sou a <strong>Blueprint IA</strong> — especialista em investimentos brasileiros.<br><br>
-            Posso analisar ações, FIIs, renda fixa, criptos e ajudar a montar sua carteira com base em dados reais da B3.<br><br>
+            Olá. Sou a <strong>Blueprint IA</strong> — especialista em investimentos brasileiros.<br>
+            Posso analisar ações, FIIs, renda fixa, criptos e ajudar a montar sua carteira com base em dados reais da B3.<br>
             O que você quer saber?
           </div>
           <div class="ia-suggs">
@@ -2137,8 +2137,9 @@ async function sendDbChat(){
   try{
     const reply=await callBlueprintIA(text,chatHistory.slice(0,-1));
     document.getElementById(tid)?.remove();
-    chatHistory.push({role:'assistant',content:reply});
-    addMsg('ai',renderMarkdown(reply));
+    const cleanReply=stripEmojis(reply);
+    chatHistory.push({role:'assistant',content:cleanReply});
+    addMsg('ai',renderMarkdown(cleanReply));
     await spendCredit();
   }catch(e){document.getElementById(tid)?.remove();addMsg('ai','⚠️ Erro de conexão. Tente novamente.');}
   input.disabled=false;btn.disabled=false;input.focus();
@@ -2180,6 +2181,22 @@ function newIaChat(){
   // Reset chat
   chatHistory=[];
   msgs.innerHTML=`<div class="ia-msg ai"><div class="ia-msg-who">Blueprint IA</div><div class="ia-bubble">Novo chat. O que você quer analisar?</div></div>`;
+}
+
+// ── EMOJI STRIPPER ──
+function stripEmojis(text){
+  return text
+    // Remove Unicode emoji ranges
+    .replace(/[\u{1F300}-\u{1FAFF}]/gu,'')
+    .replace(/[\u{2600}-\u{27BF}]/gu,'')
+    .replace(/[\u{FE00}-\u{FE0F}]/gu,'')
+    .replace(/[\u{1F000}-\u{1F02F}]/gu,'')
+    .replace(/\u200d/g,'')
+    // Specific common finance emojis that may slip through
+    .replace(/[📊📈📉💰💸🏦🏢✅⚠️🔍🚀💡🎯🔥⭐❌✔️📌💎🧠🌍🇧🇷]/g,'')
+    // Clean up double spaces left by removed emojis
+    .replace(/  +/g,' ')
+    .trim();
 }
 
 // ── MARKDOWN RENDERER ──
