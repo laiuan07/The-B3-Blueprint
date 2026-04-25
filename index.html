@@ -748,63 +748,138 @@ footer a:hover{color:var(--text)}
 }
 .ia-credits-bar { display:none !important }
 
-/* Sidebar */
+/* ── Sidebar (Logoipsum style) ── */
 .ia-sidebar {
-  width:232px; flex-shrink:0;
-  background:#0e0e0e; border-right:1px solid rgba(255,255,255,.06);
-  display:flex; flex-direction:column; padding:18px 10px;
+  width:250px; flex-shrink:0;
+  background:#0b0d1a; border-right:1px solid rgba(255,255,255,.05);
+  display:flex; flex-direction:column; padding:0;
   height:100%; overflow-y:auto; overflow-x:hidden;
 }
-.ia-sidebar-head {
-  padding:0 8px 14px; border-bottom:1px solid rgba(255,255,255,.06); margin-bottom:10px;
-  display:flex; align-items:center; justify-content:space-between;
+/* Logo */
+.ia-logo-wrap {
+  display:flex; align-items:center; gap:10px;
+  padding:18px 16px 14px; border-bottom:1px solid rgba(255,255,255,.05);
 }
-.ia-sidebar-heading {
-  font-family:'Clash Display',sans-serif; font-size:13px; font-weight:600; color:#888;
-}
-.ia-new-btn {
-  display:flex; align-items:center; gap:8px;
-  padding:9px 12px; border-radius:9px;
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
-  color:#aaa; font-family:'Cabinet Grotesk',sans-serif; font-weight:600; font-size:13px;
-  cursor:pointer; transition:all .2s; width:100%; text-align:left; margin-bottom:6px;
-}
-.ia-new-btn:hover { background:rgba(255,255,255,.09); color:#e8e8e8 }
-.ia-new-btn-icon {
-  width:18px; height:18px; border:1.5px solid rgba(255,255,255,.25); border-radius:5px;
+.ia-logo-icon {
+  width:28px; height:28px; border-radius:8px;
+  background:linear-gradient(135deg,#5b6bff,#7b8bff);
   display:flex; align-items:center; justify-content:center;
-  font-size:13px; color:rgba(255,255,255,.4); flex-shrink:0; line-height:1;
+  font-family:'Clash Display',sans-serif; font-weight:800; font-size:13px; color:#fff; flex-shrink:0;
 }
+.ia-logo-text {
+  font-family:'Clash Display',sans-serif; font-size:14px; font-weight:700; color:#ccc; letter-spacing:-.3px;
+}
+/* Search */
+.ia-search-wrap { padding:10px 12px 6px; }
+.ia-search {
+  width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07);
+  border-radius:8px; padding:7px 12px; font-size:12px; color:#777;
+  font-family:'Cabinet Grotesk',sans-serif; outline:none;
+  box-sizing:border-box;
+}
+.ia-search::placeholder { color:#383838 }
+.ia-search:focus { border-color:rgba(91,107,255,.3); }
+/* Menu section label */
 .ia-sidebar-section {
-  font-family:var(--mono); font-size:9px; color:#383838;
-  letter-spacing:1.3px; text-transform:uppercase; padding:10px 10px 5px;
+  font-family:var(--mono); font-size:9px; color:#2e2e2e;
+  letter-spacing:1.3px; text-transform:uppercase; padding:10px 16px 4px;
 }
+/* Menu items */
+.ia-menu-item {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 16px; width:100%; text-align:left; border:none; background:none;
+  font-family:'Cabinet Grotesk',sans-serif; font-size:13px; font-weight:600;
+  color:#3a3a3a; cursor:pointer; transition:all .15s; border-radius:0;
+}
+.ia-menu-item:hover { background:rgba(255,255,255,.04); color:#888 }
+.ia-menu-item.active { color:#b0b8ff; background:rgba(91,107,255,.08) }
+.ia-menu-icon { font-size:14px; width:18px; text-align:center; flex-shrink:0; opacity:.7 }
+.ia-menu-arrow { margin-left:auto; font-size:10px; opacity:.35 }
+/* New Chat button */
+.ia-new-btn {
+  display:flex; align-items:center; gap:10px; margin:8px 12px;
+  padding:9px 14px; border-radius:9px;
+  background:rgba(91,107,255,.12); border:1px solid rgba(91,107,255,.25);
+  color:#8899ff; font-family:'Cabinet Grotesk',sans-serif; font-weight:700; font-size:13px;
+  cursor:pointer; transition:all .2s; width:calc(100% - 24px); text-align:left;
+}
+.ia-new-btn:hover { background:rgba(91,107,255,.2); color:#b0bcff }
+.ia-new-btn-icon {
+  width:18px; height:18px; border:1.5px solid rgba(91,107,255,.4); border-radius:5px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; color:#8899ff; flex-shrink:0; line-height:1;
+}
+/* History */
 .ia-hist-item {
-  padding:8px 10px; border-radius:7px; cursor:pointer;
-  font-size:12px; color:#444; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  padding:7px 16px; cursor:pointer;
+  font-size:11.5px; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   transition:all .2s; display:flex; align-items:center; gap:8px;
 }
-.ia-hist-item:hover { background:rgba(255,255,255,.05); color:#888 }
-.ia-hist-dot { width:4px; height:4px; border-radius:50%; background:#2a2a2a; flex-shrink:0 }
-.ia-sidebar-bottom {
-  margin-top:auto; padding:14px 10px 0; border-top:1px solid rgba(255,255,255,.06);
-  display:flex; align-items:center; justify-content:space-between; gap:8px;
+.ia-hist-item:hover { background:rgba(255,255,255,.04); color:#777 }
+.ia-hist-dot { width:3px; height:3px; border-radius:50%; background:#2a2a2a; flex-shrink:0 }
+/* Upgrade card */
+.ia-upgrade-card {
+  margin:10px 12px 8px;
+  background:linear-gradient(135deg,rgba(91,107,255,.18),rgba(91,107,255,.08));
+  border:1px solid rgba(91,107,255,.2); border-radius:12px; padding:14px;
 }
-.ia-credits-label-s { font-size:10px; color:#444; font-family:var(--mono) }
-.ia-credits-val { font-size:13px; color:#666; font-family:var(--mono); font-weight:600; margin-top:2px }
-.ia-buy-s {
-  background:none; border:1px solid rgba(255,255,255,.09); color:#555;
-  padding:5px 11px; border-radius:7px; font-size:11px; cursor:pointer;
-  font-family:'Cabinet Grotesk',sans-serif; font-weight:700; transition:all .2s; white-space:nowrap;
+.ia-upgrade-days {
+  font-family:var(--mono); font-size:10px; color:#8899ff;
+  background:rgba(91,107,255,.2); border-radius:5px;
+  padding:2px 8px; width:fit-content; margin-bottom:8px;
 }
-.ia-buy-s:hover { border-color:rgba(255,255,255,.18); color:#ccc }
+.ia-upgrade-desc {
+  font-size:11.5px; color:#555; line-height:1.5; margin-bottom:10px;
+  font-family:'Cabinet Grotesk',sans-serif;
+}
+.ia-upgrade-btn {
+  width:100%; padding:7px; border-radius:7px;
+  background:#fff; color:#111; border:none; cursor:pointer;
+  font-family:'Cabinet Grotesk',sans-serif; font-weight:800; font-size:12px;
+  transition:opacity .2s;
+}
+.ia-upgrade-btn:hover { opacity:.9 }
+/* User profile at bottom */
+.ia-user-row {
+  display:flex; align-items:center; gap:10px;
+  padding:12px 14px; border-top:1px solid rgba(255,255,255,.05);
+  cursor:pointer; transition:background .2s;
+}
+.ia-user-row:hover { background:rgba(255,255,255,.03) }
+.ia-user-avatar {
+  width:30px; height:30px; border-radius:50%;
+  background:linear-gradient(135deg,#5b6bff,#9b6bff);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:800; color:#fff; flex-shrink:0; font-family:'Clash Display',sans-serif;
+}
+.ia-user-info { flex:1; min-width:0 }
+.ia-user-name { font-size:12px; font-weight:700; color:#777; font-family:'Cabinet Grotesk',sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.ia-user-email { font-size:10px; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-family:var(--mono) }
+.ia-user-arrow { font-size:10px; color:#333; flex-shrink:0 }
+/* Legacy — hide old credits bar */
+.ia-credits-label-s,.ia-credits-val,.ia-buy-s,.ia-sidebar-bottom { display:none }
 
 /* ── IA Main — centered card layout ── */
 .ia-main {
   flex:1; display:flex; flex-direction:column; align-items:center;
-  justify-content:center; overflow:hidden; background:#111111; padding:0 28px;
+  justify-content:center; overflow:hidden; padding:0 28px;
+  background:#0e1020;
+  background-image:
+    linear-gradient(rgba(91,107,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,107,255,.04) 1px, transparent 1px);
+  background-size:44px 44px;
+  position:relative;
 }
 .ia-main.has-msgs { justify-content:flex-start }
+/* Model selector — top right */
+.ia-model-sel {
+  position:absolute; top:16px; right:20px;
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09);
+  border-radius:8px; padding:6px 12px; cursor:pointer;
+  font-family:var(--mono); font-size:11px; color:#555; transition:all .2s;
+}
+.ia-model-sel:hover { border-color:rgba(91,107,255,.3); color:#999 }
 
 /* Messages wrap — 0 height when empty, flex:1 when has-msgs */
 .ia-msgs-wrap {
@@ -817,7 +892,7 @@ footer a:hover{color:var(--text)}
 /* Messages scroll area */
 .ia-msgs {
   flex:1; overflow-y:auto;
-  display:flex; flex-direction:column; gap:8px;
+  display:flex; flex-direction:column; gap:6px;
   padding:20px 0 6px;
 }
 .ia-msgs::-webkit-scrollbar { width:3px }
@@ -832,10 +907,10 @@ footer a:hover{color:var(--text)}
   font-family:var(--mono); font-size:9px; color:#2e2e2e;
   letter-spacing:1.2px; text-transform:uppercase; margin-bottom:4px;
 }
-.ia-bubble { font-size:13.5px; line-height:1.55; color:#aaa }
+.ia-bubble { font-size:13.5px; line-height:1.35; color:#9090b0 }
 .ia-msg.user .ia-bubble {
-  background:#1a1a1a; border:1px solid rgba(255,255,255,.08);
-  border-radius:14px 14px 4px 14px; padding:9px 15px; color:#d5d5d5;
+  background:#13152a; border:1px solid rgba(91,107,255,.18);
+  border-radius:14px 14px 4px 14px; padding:8px 14px; color:#c8c8e8;
 }
 .ia-msg.ai .ia-bubble { background:none; padding:0 }
 .ia-msg.ai .ia-bubble strong { color:#ccc }
@@ -860,49 +935,75 @@ footer a:hover{color:var(--text)}
   width:100%; max-width:700px; flex-shrink:0; padding:14px 0 24px;
 }
 
-/* Welcome heading (hidden when conversation starts) */
-.ia-welcome { text-align:center; margin-bottom:22px }
+/* Welcome heading */
+.ia-welcome { text-align:center; margin-bottom:24px }
 .ia-welcome-title {
-  font-family:'Clash Display',sans-serif; font-size:26px; font-weight:700;
-  color:#c0c0c0; letter-spacing:-.5px; line-height:1.25;
+  font-family:'Clash Display',sans-serif; font-size:28px; font-weight:700;
+  color:#c8c8c8; letter-spacing:-.5px; line-height:1.2;
 }
 .ia-main.has-msgs .ia-welcome { display:none }
 
-/* Input box */
+/* Two-row input box (Logoipsum style) */
 .ia-input-box {
-  display:flex; align-items:center; gap:10px;
-  background:#161616; border:1px solid rgba(255,255,255,.09);
-  border-radius:13px; padding:12px 12px 12px 18px; transition:border-color .2s;
+  display:flex; flex-direction:column; gap:10px;
+  background:#13152a; border:1px solid rgba(91,107,255,.18);
+  border-radius:16px; padding:16px 16px 12px; transition:border-color .2s;
+  box-shadow:0 4px 32px rgba(0,0,0,.4);
 }
-.ia-input-box:focus-within { border-color:rgba(255,255,255,.18) }
+.ia-input-box:focus-within { border-color:rgba(91,107,255,.4) }
 .ia-field {
-  flex:1; background:none; border:none; outline:none;
-  font-family:'Cabinet Grotesk',sans-serif; font-size:14px; color:#ddd;
+  width:100%; background:none; border:none; outline:none;
+  font-family:'Cabinet Grotesk',sans-serif; font-size:14px; color:#ddd; line-height:1.5;
 }
-.ia-field::placeholder { color:#383838 }
+.ia-field::placeholder { color:#303050 }
+/* Row 2: action buttons left, send right */
+.ia-input-row2 {
+  display:flex; align-items:center; justify-content:space-between;
+}
+.ia-input-btns-left { display:flex; gap:6px; }
+.ia-iab {
+  display:flex; align-items:center; gap:6px;
+  padding:6px 11px; border-radius:8px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+  color:#555; font-size:12px; cursor:pointer; transition:all .2s;
+  font-family:'Cabinet Grotesk',sans-serif; font-weight:600;
+}
+.ia-iab:hover { background:rgba(91,107,255,.1); border-color:rgba(91,107,255,.3); color:#99aaff }
+.ia-iab-icon { font-size:13px; opacity:.7 }
+.ia-input-btns-right { display:flex; align-items:center; gap:8px; }
+.ia-mic-btn {
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; color:#555; font-size:14px; transition:all .2s;
+}
+.ia-mic-btn:hover { background:rgba(91,107,255,.1); color:#99aaff }
 .ia-send {
-  width:34px; height:34px; background:#e8e8e8; border:none; border-radius:50%;
+  width:34px; height:34px; background:#5b6bff; border:none; border-radius:50%;
   display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
-  transition:all .2s; color:#111; font-size:15px; font-weight:700;
+  transition:all .2s; color:#fff; font-size:16px; font-weight:700;
+  box-shadow:0 2px 12px rgba(91,107,255,.4);
 }
-.ia-send:hover { background:#fff; transform:scale(1.06) }
-.ia-send:disabled { opacity:.35; cursor:not-allowed; transform:none }
+.ia-send:hover { background:#6e7fff; transform:scale(1.08); box-shadow:0 4px 20px rgba(91,107,255,.6) }
+.ia-send:disabled { opacity:.3; cursor:not-allowed; transform:none; box-shadow:none }
 
-/* Suggestion chips below input (hidden when chat is active) */
+/* Chip suggestions */
 .ia-suggs-bottom {
-  display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;
+  display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;
 }
 .ia-main.has-msgs .ia-suggs-bottom { display:none }
 .ia-sugg-chip {
-  padding:7px 13px; background:#161616; border:1px solid rgba(255,255,255,.08);
-  border-radius:8px; font-size:12px; color:#555; cursor:pointer; transition:all .2s;
+  display:flex; align-items:center; gap:6px;
+  padding:7px 13px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07);
+  border-radius:9px; font-size:12px; color:#4a4a6a; cursor:pointer; transition:all .2s;
   font-family:'Cabinet Grotesk',sans-serif; font-weight:600;
 }
-.ia-sugg-chip:hover { background:#1a1a1a; border-color:rgba(255,255,255,.13); color:#aaa }
+.ia-sugg-chip:hover { background:rgba(91,107,255,.1); border-color:rgba(91,107,255,.3); color:#99aaff }
+.ia-chip-icon { font-size:13px; opacity:.8 }
 
 /* Input footer */
 .ia-input-footer {
-  font-family:var(--mono); font-size:10px; color:#252525;
+  font-family:var(--mono); font-size:10px; color:#1e1e30;
   text-align:center; margin-top:10px; letter-spacing:.3px;
 }
 
@@ -1690,30 +1791,72 @@ footer a:hover{color:var(--text)}
   <!-- ── B3BLUEPRINT IA ── -->
   <div id="app-ia" class="app-section ia-section" style="display:none">
 
-    <!-- Sidebar -->
+    <!-- Sidebar (Logoipsum style) -->
     <div class="ia-sidebar">
-      <div class="ia-sidebar-head">
-        <div class="ia-sidebar-heading">Blueprint IA</div>
+      <!-- Logo -->
+      <div class="ia-logo-wrap">
+        <div class="ia-logo-icon">B</div>
+        <span class="ia-logo-text">Blueprint IA</span>
       </div>
+
+      <!-- Search -->
+      <div class="ia-search-wrap">
+        <input class="ia-search" placeholder="Buscar...">
+      </div>
+
+      <!-- New Chat -->
       <button class="ia-new-btn" onclick="newIaChat()">
         <span class="ia-new-btn-icon">+</span>
         Novo Chat
       </button>
+
+      <!-- Menu Principal -->
+      <div class="ia-sidebar-section">Menu Principal</div>
+      <button class="ia-menu-item active" onclick="newIaChat()">
+        <span class="ia-menu-icon">◎</span> Chat
+      </button>
+      <button class="ia-menu-item" onclick="appNav('home')">
+        <span class="ia-menu-icon">⊞</span> Dashboard <span class="ia-menu-arrow">›</span>
+      </button>
+      <button class="ia-menu-item" onclick="appNav('modules')">
+        <span class="ia-menu-icon">◫</span> Módulos
+      </button>
+      <button class="ia-menu-item" onclick="appNav('plans')">
+        <span class="ia-menu-icon">◉</span> Planos <span class="ia-menu-arrow">›</span>
+      </button>
+
+      <!-- Recentes -->
       <div class="ia-sidebar-section">Recentes</div>
       <div class="ia-hist-item" id="iaHist1" style="display:none"><span class="ia-hist-dot"></span><span id="iaHist1Text"></span></div>
       <div class="ia-hist-item" id="iaHist2" style="display:none"><span class="ia-hist-dot"></span><span id="iaHist2Text"></span></div>
       <div class="ia-hist-item" id="iaHist3" style="display:none"><span class="ia-hist-dot"></span><span id="iaHist3Text"></span></div>
-      <div class="ia-sidebar-bottom">
-        <div>
-          <div class="ia-credits-label-s">Créditos</div>
-          <div class="ia-credits-val" id="iaCreditsCount">80</div>
+
+      <!-- Spacer -->
+      <div style="flex:1"></div>
+
+      <!-- Upgrade card -->
+      <div class="ia-upgrade-card">
+        <div class="ia-upgrade-days"><span id="iaCreditsCount">80</span> créditos</div>
+        <div class="ia-upgrade-desc">Adquira mais créditos e use a Blueprint IA sem limites.</div>
+        <button class="ia-upgrade-btn" onclick="showBuyCreditsModal()">Comprar Créditos</button>
+      </div>
+
+      <!-- User profile -->
+      <div class="ia-user-row" onclick="handleLogout()">
+        <div class="ia-user-avatar" id="iaSidebarAvatar">U</div>
+        <div class="ia-user-info">
+          <div class="ia-user-name" id="iaSidebarName">Usuário</div>
+          <div class="ia-user-email" id="iaSidebarEmail">email@exemplo.com</div>
         </div>
-        <button class="ia-buy-s" onclick="showBuyCreditsModal()">+ Comprar</button>
+        <span class="ia-user-arrow">⇥</span>
       </div>
     </div>
 
-    <!-- Main Chat (centered card layout) -->
+    <!-- Main Chat -->
     <div class="ia-main" id="iaMain">
+
+      <!-- Model selector (top right) -->
+      <div class="ia-model-sel">Blueprint IA &nbsp;↓</div>
 
       <!-- Messages — hidden when empty, grows when has-msgs -->
       <div class="ia-msgs-wrap">
@@ -1725,21 +1868,38 @@ footer a:hover{color:var(--text)}
         <div class="ia-welcome" id="iaWelcome">
           <div class="ia-welcome-title">O que está na sua mente hoje?</div>
         </div>
+
+        <!-- Two-row input box -->
         <div class="ia-input-box">
           <input class="ia-field" id="dbChatInput"
-            placeholder="Pergunte sobre ações, FIIs, renda fixa, cripto..."
+            placeholder="Mensagem para a Blueprint IA..."
             onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDbChat()}">
-          <button class="ia-send" id="dbSendBtn" onclick="sendDbChat()">↑</button>
+          <div class="ia-input-row2">
+            <div class="ia-input-btns-left">
+              <button class="ia-iab" onclick="sendSugg('Analisar ação')"><span class="ia-iab-icon">◎</span> Buscar</button>
+              <button class="ia-iab" onclick="sendSugg('Monte um gráfico de comparação de renda fixa vs renda variável')"><span class="ia-iab-icon">⊕</span> Comparar</button>
+            </div>
+            <div class="ia-input-btns-right">
+              <button class="ia-mic-btn">♪</button>
+              <button class="ia-send" id="dbSendBtn" onclick="sendDbChat()">↑</button>
+            </div>
+          </div>
         </div>
+
+        <!-- Chips with icons -->
         <div class="ia-suggs-bottom" id="iaSuggsBottom">
-          <div class="ia-sugg-chip" onclick="sendSugg('Analise a PETR4 — vale comprar agora?')">Analisar PETR4</div>
-          <div class="ia-sugg-chip" onclick="sendSugg('Qual o melhor CDB com a Selic a 14,75%?')">Melhor CDB</div>
-          <div class="ia-sugg-chip" onclick="sendSugg('Como montar uma carteira com R$1.000?')">Montar carteira</div>
-          <div class="ia-sugg-chip" onclick="sendSugg('FII ou imóvel físico — qual rende mais?')">FII vs Imóvel</div>
-          <div class="ia-sugg-chip" onclick="sendSugg('Vale investir em Bitcoin agora?')">Bitcoin</div>
-          <div class="ia-sugg-chip" onclick="sendSugg('O que é o Ibovespa e como funciona?')">Ibovespa</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Analise a PETR4 — vale comprar agora?')"><span class="ia-chip-icon">◈</span>Analisar PETR4</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Qual o melhor CDB com a Selic a 14,75%?')"><span class="ia-chip-icon">◎</span>Melhor CDB</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Como montar uma carteira com R$1.000?')"><span class="ia-chip-icon">◫</span>Montar carteira</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('FII ou imóvel físico — qual rende mais?')"><span class="ia-chip-icon">⊞</span>FII vs Imóvel</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Vale investir em Bitcoin agora?')"><span class="ia-chip-icon">◉</span>Bitcoin</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('O que é o Ibovespa e como funciona?')"><span class="ia-chip-icon">◆</span>Ibovespa</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Explique o que é Tesouro Direto e como investir')"><span class="ia-chip-icon">◇</span>Tesouro Direto</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Qual a diferença entre LCI e LCA?')"><span class="ia-chip-icon">△</span>LCI vs LCA</div>
+          <div class="ia-sugg-chip" onclick="sendSugg('Como declarar investimentos no imposto de renda?')"><span class="ia-chip-icon">▣</span>Imposto de Renda</div>
         </div>
-        <div class="ia-input-footer">Blueprint IA · dados da B3 em tempo real · <span id="iaCreditsHint">80</span> créditos restantes</div>
+
+        <div class="ia-input-footer">Blueprint IA · B3 em tempo real · <span id="iaCreditsHint">80</span> créditos</div>
       </div>
     </div>
 
@@ -1902,6 +2062,13 @@ function populateUserUI(user,name){
   const uavatar=document.getElementById('dbAvatar');
   if(uname)uname.textContent=display;
   if(uavatar)uavatar.textContent=name.charAt(0).toUpperCase();
+  // Sidebar user row
+  const sbName=document.getElementById('iaSidebarName');
+  const sbEmail=document.getElementById('iaSidebarEmail');
+  const sbAvatar=document.getElementById('iaSidebarAvatar');
+  if(sbName)sbName.textContent=display;
+  if(sbEmail)sbEmail.textContent=user.email||'';
+  if(sbAvatar)sbAvatar.textContent=name.charAt(0).toUpperCase();
   loadCredits(user);
 }
 
