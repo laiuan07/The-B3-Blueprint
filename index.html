@@ -1553,7 +1553,7 @@ footer a:hover{color:var(--text)}
       <button class="app-nav-btn" data-anav="ia" onclick="appNav('ia')">B3Blueprint IA</button>
     </div>
     <div class="app-nav-right">
-      <div class="credits-badge" id="creditsBadge" onclick="showBuyCreditsModal()">⚡ <span id="creditsNum">50</span> créditos</div>
+      <div class="credits-badge" id="creditsBadge" onclick="showBuyCreditsModal()">⚡ <span id="creditsNum">80</span> créditos</div>
       <div class="app-user-chip">
         <div class="db-avatar" id="dbAvatar">U</div>
         <span class="db-username" id="dbUserName">Usuário</span>
@@ -1624,51 +1624,52 @@ footer a:hover{color:var(--text)}
     <div class="app-section-inner">
       <div class="app-section-hdr">
         <div class="app-section-title">Planos</div>
-        <div class="app-section-sub">Escolha o plano ideal para o seu nível de investimento</div>
+        <div class="app-section-sub">Simples, direto, sem pegadinha. Cancele quando quiser.</div>
       </div>
       <div class="plan-grid">
         <div class="plan-card">
           <div class="plan-badge badge-start">Mais em conta</div>
-          <div class="plan-name">Plano <span>START</span></div>
+          <div class="plan-name">Plano <span>Mensal</span></div>
           <ul class="plan-features">
-            <li><span class="plan-check">✦</span>200 créditos de IA por mês</li>
-            <li><span class="plan-check">✦</span>Acesso à Blueprint IA</li>
-            <li><span class="plan-check">✦</span>4 módulos educativos</li>
-            <li><span class="plan-check">✦</span>Dados básicos do mercado</li>
-            <li><span class="plan-check">✦</span>Suporte por email</li>
+            <li><span class="plan-check">✦</span>IA com dados em tempo real</li>
+            <li><span class="plan-check">✦</span>Análise de ações e FIIs</li>
+            <li><span class="plan-check">✦</span>Tira-dúvidas ilimitado</li>
+            <li><span class="plan-check">✦</span>Acesso aos 4 módulos</li>
+            <li><span class="plan-check">✦</span>Cancele quando quiser</li>
           </ul>
-          <div class="plan-price"><sup>R$</sup>19<span style="font-size:22px">,90</span></div>
-          <div class="plan-period">por mês</div>
-          <button class="plan-btn outline" onclick="choosePlan('START','R$19,90')">Escolher Plano</button>
+          <div class="plan-price"><sup>R$</sup>27<span style="font-size:22px">,99</span></div>
+          <div class="plan-period">por mês · cobrado mensalmente</div>
+          <button class="plan-btn outline" onclick="window.open('https://pay.hotmart.com/E105279724U?off=jve556ja','_blank')">Assinar agora</button>
         </div>
         <div class="plan-card featured">
+          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0369a1,var(--blue));color:#fff;font-family:var(--mono);font-size:9px;padding:4px 14px;border-radius:100px;letter-spacing:1px;white-space:nowrap">✦ Melhor custo-benefício</div>
           <div class="plan-badge badge-grow">Recomendado</div>
-          <div class="plan-name">Plano <span>GROW</span></div>
+          <div class="plan-name">Plano <span>Anual</span></div>
           <ul class="plan-features">
-            <li><span class="plan-check">✦</span>500 créditos de IA por mês</li>
-            <li><span class="plan-check">✦</span>Tudo do START</li>
-            <li><span class="plan-check">✦</span>Dados em tempo real da B3</li>
-            <li><span class="plan-check">✦</span>Alertas de preço</li>
-            <li><span class="plan-check">✦</span>Análises personalizadas</li>
+            <li><span class="plan-check">✦</span>Tudo do plano mensal</li>
+            <li><span class="plan-check">✦</span>Alertas de mercado</li>
+            <li><span class="plan-check">✦</span>Prioridade em novas features</li>
             <li><span class="plan-check">✦</span>Suporte prioritário</li>
+            <li><span class="plan-check">✦</span>Acesso antecipado a novidades</li>
           </ul>
-          <div class="plan-price"><sup>R$</sup>39<span style="font-size:22px">,90</span></div>
-          <div class="plan-period">por mês</div>
-          <button class="plan-btn primary" onclick="choosePlan('GROW','R$39,90')">Escolher Plano</button>
+          <div class="plan-price"><sup>R$</sup>23<span style="font-size:22px">,90</span></div>
+          <div class="plan-period">por mês · R$286,80 cobrado anualmente</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--green);margin-bottom:12px">Economize R$50 por ano</div>
+          <button class="plan-btn primary" onclick="window.open('https://pay.hotmart.com/E105279724U?off=5tqdpmwm','_blank')">Quero o anual →</button>
         </div>
         <div class="plan-card">
-          <div class="plan-badge badge-scale">Mais vendido</div>
-          <div class="plan-name">Plano <span>SCALE</span></div>
+          <div class="plan-badge badge-scale">Sem recorrência</div>
+          <div class="plan-name">Plano <span>Teste 30 dias</span></div>
           <ul class="plan-features">
-            <li><span class="plan-check">✦</span>Créditos ilimitados</li>
-            <li><span class="plan-check">✦</span>Tudo do GROW</li>
-            <li><span class="plan-check">✦</span>Acesso antecipado a novidades</li>
-            <li><span class="plan-check">✦</span>Análises de carteira completa</li>
-            <li><span class="plan-check">✦</span>Suporte premium via WhatsApp</li>
+            <li><span class="plan-check">✦</span>Acesso completo por 30 dias</li>
+            <li><span class="plan-check">✦</span>Sem cobrança recorrente</li>
+            <li><span class="plan-check">✦</span>Todas as funcionalidades</li>
+            <li><span class="plan-check">✦</span>Ideal para experimentar</li>
+            <li><span class="plan-check">✦</span>Sem compromisso</li>
           </ul>
-          <div class="plan-price"><sup>R$</sup>79<span style="font-size:22px">,90</span></div>
-          <div class="plan-period">por mês</div>
-          <button class="plan-btn outline" onclick="choosePlan('SCALE','R$79,90')">Escolher Plano</button>
+          <div class="plan-price"><sup>R$</sup>49<span style="font-size:22px">,90</span></div>
+          <div class="plan-period">pagamento único · sem recorrência</div>
+          <button class="plan-btn outline" onclick="window.open('https://pay.hotmart.com/E105279724U?off=ur6adiwt','_blank')">Quero testar</button>
         </div>
       </div>
     </div>
@@ -1693,7 +1694,7 @@ footer a:hover{color:var(--text)}
       <div class="ia-sidebar-bottom">
         <div>
           <div class="ia-credits-label-s">Créditos</div>
-          <div class="ia-credits-val" id="iaCreditsCount">50</div>
+          <div class="ia-credits-val" id="iaCreditsCount">80</div>
         </div>
         <button class="ia-buy-s" onclick="showBuyCreditsModal()">+ Comprar</button>
       </div>
@@ -1734,7 +1735,7 @@ footer a:hover{color:var(--text)}
             onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDbChat()}">
           <button class="ia-send" id="dbSendBtn" onclick="sendDbChat()">↑</button>
         </div>
-        <div class="ia-input-footer">Blueprint IA · dados da B3 em tempo real · <span id="iaCreditsHint">50</span> créditos restantes</div>
+        <div class="ia-input-footer">Blueprint IA · dados da B3 em tempo real · <span id="iaCreditsHint">80</span> créditos restantes</div>
       </div>
     </div>
 
@@ -2008,12 +2009,12 @@ function appNav(section){
 }
 
 // ── CREDITS SYSTEM ──
-let userCredits=50;
+let userCredits=80;
 let _selectedPack={credits:100,price:'R$ 9,90'};
 
 async function loadCredits(user){
   const credits=user?.user_metadata?.credits;
-  userCredits=(credits===undefined||credits===null)?50:credits;
+  userCredits=(credits===undefined||credits===null)?80:credits;
   updateCreditsUI();
 }
 
@@ -2027,18 +2028,18 @@ function updateCreditsUI(){
   // Color cues when low
   const badgeWrap=document.getElementById('creditsBadge');
   if(badgeWrap){
-    if(userCredits<=5){badgeWrap.style.color='#f87171';badgeWrap.style.borderColor='rgba(248,113,113,.3)';}
-    else if(userCredits<=15){badgeWrap.style.color='#fbbf24';badgeWrap.style.borderColor='rgba(251,191,36,.3)';}
+    if(userCredits<=0){badgeWrap.style.color='#f87171';badgeWrap.style.borderColor='rgba(248,113,113,.3)';}
+    else if(userCredits<=20){badgeWrap.style.color='#fbbf24';badgeWrap.style.borderColor='rgba(251,191,36,.3)';}
     else{badgeWrap.style.color='';badgeWrap.style.borderColor='';}
   }
   if(iaCount){
-    iaCount.style.color=userCredits<=5?'#f87171':userCredits<=15?'#fbbf24':'';
+    iaCount.style.color=userCredits<=0?'#f87171':userCredits<=20?'#fbbf24':'';
   }
 }
 
 async function spendCredit(){
   if(userCredits<=0)return false;
-  userCredits=Math.max(0,userCredits-1);
+  userCredits=Math.max(0,userCredits-10);
   updateCreditsUI();
   // Persist to Supabase user_metadata
   try{
