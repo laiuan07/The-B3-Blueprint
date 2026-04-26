@@ -1547,13 +1547,9 @@ footer a:hover{color:var(--text)}
       <svg width="28" height="22" viewBox="0 0 110 90" fill="none"><defs><linearGradient id="lg3" x1="0" y1="0" x2="110" y2="90" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#67e8f9"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6 L55 6 L55 18 L22 18 L22 39 L50 39 L50 51 L22 51 L22 72 L55 72 L55 84 L10 84 Z M55 6 L78 6 C92 6 100 15 100 27 C100 35 96 41 89 44 C96 47 100 54 100 63 C100 75 92 84 78 84 L55 84 L55 51 L78 51 C83 51 86 48 86 43 C86 38 83 35 78 35 L55 35 Z M55 18 L55 35 L78 35 C83 35 86 32 86 27 C86 22 83 18 78 18 Z" fill="url(#lg3)"/></svg>
       <span style="font-family:'Clash Display',sans-serif;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Blueprint</span>
     </button>
-    <div class="app-nav-links">
-      <button class="app-nav-btn" data-anav="modules" onclick="appNav('modules')">Módulos</button>
-      <button class="app-nav-btn" data-anav="plans" onclick="appNav('plans')">Planos</button>
-      <button class="app-nav-btn" data-anav="ia" onclick="appNav('ia')">B3Blueprint IA</button>
-    </div>
+    <div class="app-nav-links" style="display:none"></div>
     <div class="app-nav-right">
-      <div class="credits-badge" id="creditsBadge" onclick="showBuyCreditsModal()">⚡ <span id="creditsNum">80</span> créditos</div>
+      <div class="credits-badge" id="creditsBadge" onclick="showBuyCreditsModal()">⚡ <span id="creditsNum">50</span> créditos</div>
       <div class="app-user-chip">
         <div class="db-avatar" id="dbAvatar">U</div>
         <span class="db-username" id="dbUserName">Usuário</span>
@@ -1615,6 +1611,9 @@ footer a:hover{color:var(--text)}
           <div class="mod-card-meta"><span class="mod-meta-item">📹 9 aulas</span><span class="mod-meta-item">⏱ ~1h30</span></div>
           <div class="mod-card-cta">Acessar módulo →</div>
         </div>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:32px">
+        <button class="app-home-cta" onclick="appNav('ia')" style="background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(14,165,233,.1));border:1px solid rgba(56,189,248,.25);font-size:15px;padding:14px 36px">⚡ Usar Blueprint IA com 50 créditos grátis →</button>
       </div>
     </div>
   </div>
@@ -1694,7 +1693,7 @@ footer a:hover{color:var(--text)}
       <div class="ia-sidebar-bottom">
         <div>
           <div class="ia-credits-label-s">Créditos</div>
-          <div class="ia-credits-val" id="iaCreditsCount">80</div>
+          <div class="ia-credits-val" id="iaCreditsCount">50</div>
         </div>
         <button class="ia-buy-s" onclick="showBuyCreditsModal()">+ Comprar</button>
       </div>
@@ -1920,7 +1919,7 @@ async function handleLogin(){
     populateUserUI(data.user,name);
     _authHandled=true;
     document.getElementById('loginSuccess').classList.add('show');
-    setTimeout(()=>{_authHandled=false;goTo('dashboard');openModule(1);},1600);
+    setTimeout(()=>{_authHandled=false;goTo('dashboard');appNav('modules');},1600);
   }catch(e){btn.classList.remove('loading');showError('loginError','Erro de conexão. Tente novamente.');}
 }
 
@@ -1947,7 +1946,7 @@ async function handleRegister(){
     populateUserUI(data.user,first);
     _authHandled=true;
     document.getElementById('registerSuccess').classList.add('show');
-    setTimeout(()=>{_authHandled=false;goTo('dashboard');openModule(1);},1800);
+    setTimeout(()=>{_authHandled=false;goTo('dashboard');appNav('modules');},1800);
   }catch(e){btn.classList.remove('loading');showError('registerError','Erro de conexão. Tente novamente.');}
 }
 
@@ -1983,7 +1982,7 @@ _supabase.auth.onAuthStateChange((event,session)=>{
     populateUserUI(user,name);
     if(!_authHandled&&!document.getElementById('page-dashboard').classList.contains('active')){
       goTo('dashboard');
-      openModule(1);
+      appNav('modules');
     }
   }
   if(event==='SIGNED_OUT') goTo('landing');
@@ -2009,12 +2008,12 @@ function appNav(section){
 }
 
 // ── CREDITS SYSTEM ──
-let userCredits=80;
+let userCredits=50;
 let _selectedPack={credits:100,price:'R$ 9,90'};
 
 async function loadCredits(user){
   const credits=user?.user_metadata?.credits;
-  userCredits=(credits===undefined||credits===null)?80:credits;
+  userCredits=(credits===undefined||credits===null)?50:credits;
   updateCreditsUI();
 }
 
