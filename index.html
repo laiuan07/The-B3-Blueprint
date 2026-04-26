@@ -602,319 +602,275 @@ footer a:hover{color:var(--text)}
 }
 
 /* ═══════════════════════════════════════════════
-   POST-LOGIN — PROFESSIONAL DARK THEME
-   Paleta: charcoal neutro #0f0f0f · #161616 · #1c1c1c
+   DASHBOARD — MODERN FINTECH (LIGHT/DARK)
 ═══════════════════════════════════════════════ */
 
-/* ── Base ── */
-#page-dashboard { background:#111111 }
+/* Theme tokens — Dark (default) */
+#page-dashboard {
+  --d-bg:#070d1a; --d-surface:#0f1629; --d-surface2:#141d35;
+  --d-border:rgba(255,255,255,.08); --d-text:#f1f5f9; --d-text2:#94a3b8;
+  --d-muted:rgba(255,255,255,.06); --d-accent:#3b82f6;
+  --d-accent-glow:rgba(59,130,246,.12); --d-positive:#22c55e;
+  --d-user-bubble:#1e2d4d; font-family:'Cabinet Grotesk',sans-serif;
+}
+/* Light theme */
+#page-dashboard[data-theme="light"] {
+  --d-bg:#f0f4f8; --d-surface:#ffffff; --d-surface2:#f8fafc;
+  --d-border:#e2e8f0; --d-text:#0f172a; --d-text2:#475569;
+  --d-muted:#e2e8f0; --d-accent:#2563eb;
+  --d-accent-glow:rgba(37,99,235,.1); --d-positive:#16a34a;
+  --d-user-bubble:#dbeafe;
+}
+#page-dashboard.active { display:flex !important; flex-direction:column; height:100vh; overflow:hidden; background:var(--d-bg) }
 
-/* ── App Nav ── */
-#page-dashboard .app-nav {
-  background:rgba(17,17,17,.97);
-  border-bottom:1px solid rgba(255,255,255,.06);
+/* ── HEADER ── */
+.dh {
+  height:60px; flex-shrink:0;
+  background:var(--d-surface); border-bottom:1px solid var(--d-border);
+  display:flex; align-items:center; gap:16px; padding:0 20px;
+  position:relative; z-index:200;
 }
-#page-dashboard .app-nav-btn { color:#666; font-size:13px }
-#page-dashboard .app-nav-btn:hover { background:rgba(255,255,255,.06); color:#e8e8e8 }
-#page-dashboard .app-nav-btn.active {
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.1);
-  color:#e8e8e8;
+.dh-logo { display:flex; align-items:center; gap:9px; background:none; border:none; cursor:pointer; padding:0 }
+.dh-logo-text { font-family:'Clash Display',sans-serif; font-size:15px; font-weight:700; color:var(--d-text) }
+.dh-center { flex:1; max-width:480px; margin:0 auto }
+.dh-search-wrap {
+  display:flex; align-items:center; gap:9px;
+  background:var(--d-surface2); border:1px solid var(--d-border);
+  border-radius:10px; padding:7px 14px; transition:border-color .2s;
 }
-#page-dashboard .credits-badge {
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.09);
-  color:#666;
-  font-size:11px;
-  letter-spacing:.3px;
+.dh-search-wrap:focus-within { border-color:var(--d-accent) }
+.dh-search-icon { font-size:13px; opacity:.4; color:var(--d-text2) }
+.dh-search { flex:1; background:none; border:none; outline:none; font-family:'Cabinet Grotesk',sans-serif; font-size:13px; color:var(--d-text) }
+.dh-search::placeholder { color:var(--d-text2); opacity:.5 }
+.dh-right { flex-shrink:0; display:flex; align-items:center; gap:10px }
+.dh-credits {
+  display:flex; align-items:center; gap:5px;
+  background:var(--d-surface2); border:1px solid var(--d-border);
+  border-radius:8px; padding:5px 12px; cursor:pointer;
+  font-family:'DM Mono',monospace; font-size:12px; color:var(--d-text2);
+  transition:all .2s; white-space:nowrap;
 }
-#page-dashboard .app-user-chip {
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:100px;
-  padding:4px 12px 4px 4px;
-  display:flex; align-items:center; gap:8px;
+.dh-credits:hover { border-color:var(--d-accent); color:var(--d-accent) }
+.dh-credits-icon { color:#fbbf24 }
+.dh-plan-badge {
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.5px;
+  background:var(--d-accent-glow); color:var(--d-accent);
+  border:1px solid rgba(59,130,246,.25); border-radius:6px;
+  padding:4px 9px; text-transform:uppercase;
 }
-#page-dashboard .db-avatar {
-  width:26px; height:26px; border-radius:50%;
-  background:#2a2a2a; color:#888; font-size:11px;
+.dh-user {
+  position:relative; display:flex; align-items:center; gap:9px;
+  background:var(--d-surface2); border:1px solid var(--d-border);
+  border-radius:10px; padding:6px 12px 6px 6px;
+  cursor:pointer; transition:all .2s; user-select:none;
+}
+.dh-user:hover,.dh-user.open { border-color:var(--d-accent) }
+.dh-avatar {
+  width:28px; height:28px; border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
   display:flex; align-items:center; justify-content:center;
-  font-weight:700;
+  font-size:12px; font-weight:800; color:#fff; flex-shrink:0;
 }
-#page-dashboard .db-username { font-size:12px; color:#888; font-weight:600 }
-#page-dashboard .app-logout-btn { color:#444; font-size:16px; background:none; border:none; cursor:pointer; transition:color .2s }
-#page-dashboard .app-logout-btn:hover { color:#e8e8e8 }
-
-/* ── Home ── */
-#app-home { background:#111111 !important }
-#app-home .app-home-bg,
-#app-home .app-home-stat { display:none !important }
-#app-home .app-home-content { text-align:center; max-width:580px }
-#app-home .app-home-badge {
-  display:inline-flex; align-items:center; gap:8px;
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07);
-  color:#555; font-size:11px; padding:5px 16px; border-radius:100px;
-  margin-bottom:36px; letter-spacing:.5px; font-family:var(--mono);
+.dh-user-info { display:flex; flex-direction:column; line-height:1.2 }
+.dh-hello { font-size:10px; color:var(--d-text2); font-family:'DM Mono',monospace }
+.dh-username { font-size:13px; font-weight:700; color:var(--d-text) }
+.dh-chevron { font-size:10px; color:var(--d-text2); transition:transform .2s }
+.dh-user.open .dh-chevron { transform:rotate(180deg) }
+.dh-dropdown {
+  position:absolute; top:calc(100% + 8px); right:0;
+  background:var(--d-surface); border:1px solid var(--d-border);
+  border-radius:14px; padding:8px; min-width:220px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  display:none; flex-direction:column; gap:2px; z-index:500;
 }
-#app-home .app-home-badge .db-ai-badge-dot { background:#3a8a5c }
-#app-home .app-home-title {
-  font-family:'Clash Display',sans-serif;
-  font-size:clamp(38px,5.5vw,68px);
-  font-weight:700; letter-spacing:-2.5px; line-height:1.07;
-  color:#e8e8e8; margin-bottom:20px;
-}
-#app-home .app-home-title span {
-  background:none; -webkit-text-fill-color:#e8e8e8; color:#e8e8e8;
-}
-#app-home .app-home-sub {
-  font-size:15px; color:#555; line-height:1.8;
-  max-width:460px; margin:0 auto 36px;
-}
-#app-home .app-home-cta {
-  background:#1c1c1c; border:1px solid rgba(255,255,255,.12);
-  color:#ccc; padding:13px 28px; border-radius:100px;
-  font-family:'Cabinet Grotesk',sans-serif; font-weight:700; font-size:14px;
-  cursor:pointer; transition:all .2s;
-}
-#app-home .app-home-cta:hover { background:#242424; border-color:rgba(255,255,255,.2); color:#e8e8e8 }
-
-/* ── Modules ── */
-#app-modules { background:#111111 }
-#app-modules .app-section-title { color:#e8e8e8; font-size:20px; font-weight:600; letter-spacing:-.4px }
-#app-modules .app-section-sub { color:#555; font-size:13px }
-#app-modules .mod-card {
-  background:#161616; border:1px solid rgba(255,255,255,.07); border-radius:14px;
-}
-#app-modules .mod-card:hover { background:#1c1c1c; border-color:rgba(255,255,255,.13); transform:translateY(-2px) }
-#app-modules .mod-card::before { background:rgba(255,255,255,.06) }
-#app-modules .mc-num { background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08); color:#555 }
-#app-modules .mc-title { color:#d8d8d8; font-size:15px }
-#app-modules .mc-desc { color:#555 }
-#app-modules .mod-status-available {
-  background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.07); color:#555; font-size:9px;
-}
-#app-modules .mod-card-meta { border-top-color:rgba(255,255,255,.06) }
-#app-modules .mod-meta-item { color:#444 }
-#app-modules .mod-card-icon { font-size:26px }
-#app-modules .mod-card-cta {
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
-  color:#666; margin-top:14px; padding:10px; border-radius:10px;
-  font-size:13px; font-weight:700; text-align:center; cursor:pointer; transition:all .2s;
-}
-#app-modules .mod-card:hover .mod-card-cta { background:rgba(255,255,255,.09); color:#ccc }
-
-/* ── Plans ── */
-#app-plans { background:#111111 }
-#app-plans .app-section-title { color:#e8e8e8; font-size:20px; font-weight:600; letter-spacing:-.4px }
-#app-plans .app-section-sub { color:#555; font-size:13px }
-#app-plans .plan-card { background:#161616; border:1px solid rgba(255,255,255,.07) }
-#app-plans .plan-card.featured { background:#1a1a1a; border-color:rgba(255,255,255,.13) }
-#app-plans .plan-badge {
-  font-size:10px; letter-spacing:.4px;
-  background:rgba(255,255,255,.05); color:#666;
-  border:1px solid rgba(255,255,255,.08); border-radius:100px;
-  padding:3px 10px; font-family:var(--mono);
-}
-#app-plans .badge-grow { background:rgba(255,255,255,.08); color:#999; border-color:rgba(255,255,255,.12) }
-#app-plans .plan-name { color:#d8d8d8 }
-#app-plans .plan-name span { color:#e8e8e8 }
-#app-plans .plan-features li { color:#666 }
-#app-plans .plan-check { color:#444 }
-#app-plans .plan-price { color:#e8e8e8 }
-#app-plans .plan-period { color:#444 }
-#app-plans .plan-btn.outline {
-  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09);
-  color:#888; width:100%; padding:12px; border-radius:10px;
-  font-family:'Cabinet Grotesk',sans-serif; font-weight:700; font-size:13px;
-  cursor:pointer; transition:all .2s;
-}
-#app-plans .plan-btn.outline:hover { background:rgba(255,255,255,.1); color:#e8e8e8 }
-#app-plans .plan-btn.primary {
-  background:#e8e8e8; color:#111111; border:none;
-  width:100%; padding:12px; border-radius:10px;
-  font-family:'Cabinet Grotesk',sans-serif; font-weight:800; font-size:13px;
-  cursor:pointer; transition:all .2s;
-}
-#app-plans .plan-btn.primary:hover { background:#fff }
-
-/* ═══ IA SECTION — VOXA / CLAUDE STYLE ═══ */
-#app-ia {
-  flex-direction:row !important;
-  height:calc(100vh - 73px) !important;
-  margin-top:73px !important;
-  padding-top:0 !important;
-  background:#111111 !important;
-  min-height:auto !important;
-}
-.ia-credits-bar { display:none !important }
-
-/* Sidebar */
-.ia-sidebar {
-  width:232px; flex-shrink:0;
-  background:#0e0e0e; border-right:1px solid rgba(255,255,255,.06);
-  display:flex; flex-direction:column; padding:18px 10px;
-  height:100%; overflow-y:auto; overflow-x:hidden;
-}
-.ia-sidebar-head {
-  padding:0 8px 14px; border-bottom:1px solid rgba(255,255,255,.06); margin-bottom:10px;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.ia-sidebar-heading {
-  font-family:'Clash Display',sans-serif; font-size:13px; font-weight:600; color:#888;
-}
-.ia-new-btn {
-  display:flex; align-items:center; gap:8px;
-  padding:9px 12px; border-radius:9px;
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
-  color:#aaa; font-family:'Cabinet Grotesk',sans-serif; font-weight:600; font-size:13px;
-  cursor:pointer; transition:all .2s; width:100%; text-align:left; margin-bottom:6px;
-}
-.ia-new-btn:hover { background:rgba(255,255,255,.09); color:#e8e8e8 }
-.ia-new-btn-icon {
-  width:18px; height:18px; border:1.5px solid rgba(255,255,255,.25); border-radius:5px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:13px; color:rgba(255,255,255,.4); flex-shrink:0; line-height:1;
-}
-.ia-sidebar-section {
-  font-family:var(--mono); font-size:9px; color:#383838;
-  letter-spacing:1.3px; text-transform:uppercase; padding:10px 10px 5px;
-}
-.ia-hist-item {
-  padding:8px 10px; border-radius:7px; cursor:pointer;
-  font-size:12px; color:#444; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  transition:all .2s; display:flex; align-items:center; gap:8px;
-}
-.ia-hist-item:hover { background:rgba(255,255,255,.05); color:#888 }
-.ia-hist-dot { width:4px; height:4px; border-radius:50%; background:#2a2a2a; flex-shrink:0 }
-.ia-sidebar-bottom {
-  margin-top:auto; padding:14px 10px 0; border-top:1px solid rgba(255,255,255,.06);
-  display:flex; align-items:center; justify-content:space-between; gap:8px;
-}
-.ia-credits-label-s { font-size:10px; color:#444; font-family:var(--mono) }
-.ia-credits-val { font-size:13px; color:#666; font-family:var(--mono); font-weight:600; margin-top:2px }
-.ia-buy-s {
-  background:none; border:1px solid rgba(255,255,255,.09); color:#555;
-  padding:5px 11px; border-radius:7px; font-size:11px; cursor:pointer;
-  font-family:'Cabinet Grotesk',sans-serif; font-weight:700; transition:all .2s; white-space:nowrap;
-}
-.ia-buy-s:hover { border-color:rgba(255,255,255,.18); color:#ccc }
-
-/* IA Main Chat Area */
-.ia-main {
-  flex:1; display:flex; flex-direction:column; min-width:0; height:100%; background:#111111;
-}
-.ia-topbar {
-  padding:16px 32px; border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex; align-items:center; gap:10px; flex-shrink:0;
-}
-.ia-topbar-dot { width:6px; height:6px; background:#3a7a5a; border-radius:50%; animation:pulse 2s infinite; flex-shrink:0 }
-.ia-topbar-title { font-family:'Clash Display',sans-serif; font-size:14px; font-weight:600; color:#ccc }
-.ia-topbar-badge {
-  font-family:var(--mono); font-size:9px; color:#555;
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07);
-  padding:3px 8px; border-radius:4px; letter-spacing:.5px;
-}
-
-/* Clean Messages */
-.ia-msgs {
-  flex:1; overflow-y:auto; padding:24px 40px;
-  display:flex; flex-direction:column; gap:14px;
-}
-.ia-msgs::-webkit-scrollbar { width:3px }
-.ia-msgs::-webkit-scrollbar-track { background:transparent }
-.ia-msgs::-webkit-scrollbar-thumb { background:rgba(255,255,255,.06); border-radius:4px }
-
-.ia-msg {
-  display:flex; flex-direction:column; gap:0; width:100%; max-width:720px;
-}
-.ia-msg.user { align-self:flex-end; align-items:flex-end; max-width:65% }
-.ia-msg.ai { align-self:flex-start; align-items:flex-start }
-.ia-msg-who {
-  font-family:var(--mono); font-size:9px; color:#333;
-  letter-spacing:1.2px; text-transform:uppercase; margin-bottom:5px;
-}
-.ia-msg.user .ia-msg-who { color:#333 }
-.ia-bubble {
-  font-size:13.5px; line-height:1.6; color:#b0b0b0;
-}
-.ia-msg.user .ia-bubble {
-  background:#1c1c1c; border:1px solid rgba(255,255,255,.09);
-  border-radius:16px 16px 4px 16px; padding:10px 16px;
-  color:#d8d8d8; font-size:13.5px;
-}
-.ia-msg.ai .ia-bubble { background:none; padding:0 }
-.ia-msg.ai .ia-bubble strong { color:#d0d0d0 }
-.ia-msg.ai .ia-bubble h2 { color:#e0e0e0; font-size:15px; margin:10px 0 4px; font-family:'Clash Display',sans-serif; font-weight:600 }
-.ia-msg.ai .ia-bubble h3 { color:#d0d0d0; font-size:13.5px; margin:8px 0 3px; font-weight:700 }
-.ia-msg.ai .ia-bubble h4 { color:#c0c0c0; font-size:13px; margin:7px 0 2px; font-weight:700 }
-.ia-msg.ai .ia-bubble ul,.ia-msg.ai .ia-bubble ol { padding-left:18px; margin:5px 0; display:flex; flex-direction:column; gap:2px }
-.ia-msg.ai .ia-bubble li { color:#888; font-size:13.5px; line-height:1.55 }
-.ia-msg.ai .ia-bubble hr { border:none; border-top:1px solid rgba(255,255,255,.07); margin:8px 0 }
-.ia-msg.ai .ia-bubble table { border-collapse:collapse; width:100%; margin:8px 0; font-size:13px }
-.ia-msg.ai .ia-bubble th { padding:6px 10px; border:1px solid rgba(255,255,255,.08); color:#d0d0d0; font-weight:600; text-align:left; background:rgba(255,255,255,.03) }
-.ia-msg.ai .ia-bubble td { padding:6px 10px; border:1px solid rgba(255,255,255,.06); color:#888 }
-
-/* Typing dots */
-.ia-typing { display:flex; gap:5px; align-items:center; padding:4px 0 }
-.ia-typing span { width:4px; height:4px; background:#333; border-radius:50%; animation:typeBounce 1.2s infinite }
-.ia-typing span:nth-child(2) { animation-delay:.2s }
-.ia-typing span:nth-child(3) { animation-delay:.4s }
-
-/* Suggestions */
-.ia-suggs { display:flex; flex-wrap:wrap; gap:7px; margin-top:20px }
-.ia-sugg-chip {
-  padding:8px 14px; background:#161616; border:1px solid rgba(255,255,255,.08);
-  border-radius:8px; font-size:12px; color:#666; cursor:pointer; transition:all .2s;
-  font-family:'Cabinet Grotesk',sans-serif; font-weight:600;
-}
-.ia-sugg-chip:hover { background:#1d1d1d; border-color:rgba(255,255,255,.13); color:#bbb }
-
-/* Input */
-.ia-input-wrap { padding:20px 48px 26px; border-top:1px solid rgba(255,255,255,.06); flex-shrink:0 }
-.ia-input-box {
+.dh-user.open .dh-dropdown { display:flex }
+.dh-dd-item {
   display:flex; align-items:center; gap:10px;
-  background:#161616; border:1px solid rgba(255,255,255,.1);
-  border-radius:13px; padding:11px 12px 11px 18px; transition:border-color .2s;
+  padding:9px 12px; border-radius:8px; border:none;
+  background:none; width:100%; text-align:left; cursor:pointer;
+  font-family:'Cabinet Grotesk',sans-serif; font-size:13px; font-weight:600;
+  color:var(--d-text2); transition:all .15s;
 }
-.ia-input-box:focus-within { border-color:rgba(255,255,255,.2) }
-.ia-field {
-  flex:1; background:none; border:none; outline:none;
-  font-family:'Cabinet Grotesk',sans-serif; font-size:14px; color:#e0e0e0;
-}
-.ia-field::placeholder { color:#383838 }
-.ia-send {
-  width:34px; height:34px; background:#e8e8e8; border:none; border-radius:50%;
-  display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
-  transition:all .2s; color:#111; font-size:15px; font-weight:700;
-}
-.ia-send:hover { background:#fff; transform:scale(1.06) }
-.ia-send:disabled { opacity:.35; cursor:not-allowed; transform:none }
-.ia-input-footer {
-  font-family:var(--mono); font-size:10px; color:#2a2a2a;
-  text-align:center; margin-top:10px; letter-spacing:.3px;
-}
+.dh-dd-item:hover { background:var(--d-surface2); color:var(--d-text) }
+.dh-dd-icon { font-size:14px; width:20px; text-align:center }
+.dh-dd-divider { height:1px; background:var(--d-border); margin:6px 0 }
+.dh-dd-theme { display:flex; align-items:center; justify-content:space-between; padding:8px 12px; border-radius:8px }
+.dh-dd-theme-label { font-size:13px; font-weight:600; color:var(--d-text2) }
+.dh-theme-sw { position:relative; display:inline-block; width:38px; height:20px; cursor:pointer }
+.dh-theme-sw input { opacity:0; width:0; height:0 }
+.dh-theme-track { position:absolute; inset:0; background:var(--d-border); border-radius:20px; transition:.3s }
+.dh-theme-track:before { content:''; position:absolute; width:14px; height:14px; left:3px; top:3px; background:var(--d-text2); border-radius:50%; transition:.3s }
+.dh-theme-sw input:checked + .dh-theme-track { background:var(--d-accent) }
+.dh-theme-sw input:checked + .dh-theme-track:before { transform:translateX(18px); background:#fff }
+.dh-dd-logout { color:#ef4444 !important }
+.dh-dd-logout:hover { background:rgba(239,68,68,.08) !important; color:#ef4444 !important }
 
-/* Mobile */
-@media(max-width:900px){
-  #app-ia { flex-direction:column !important }
-  .ia-sidebar { display:none }
-  .ia-msgs { padding:16px 18px; gap:12px }
-  .ia-input-wrap { padding:14px 18px 20px }
-  .ia-topbar { padding:14px 18px }
-  .ia-msg.user { max-width:85% }
+/* ── BODY ── */
+.db-body { flex:1; display:flex; min-height:0; overflow:hidden; position:relative }
+
+/* Chat Panel */
+.db-chat-panel { flex:1; display:flex; flex-direction:column; min-width:0; border-right:1px solid var(--d-border) }
+.db-chat-top {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 24px; border-bottom:1px solid var(--d-border);
+  flex-shrink:0; background:var(--d-surface);
+}
+.db-chat-status { display:flex; align-items:center; gap:8px; font-family:'DM Mono',monospace; font-size:11px; color:var(--d-text2) }
+.db-online-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:pulse 2s infinite; flex-shrink:0 }
+.db-chat-action-btn {
+  display:flex; align-items:center; gap:6px;
+  background:none; border:1px solid var(--d-border);
+  border-radius:8px; padding:5px 12px; cursor:pointer;
+  font-family:'Cabinet Grotesk',sans-serif; font-size:12px; font-weight:600;
+  color:var(--d-text2); transition:all .2s;
+}
+.db-chat-action-btn:hover { border-color:var(--d-accent); color:var(--d-accent) }
+.db-msgs-wrap { flex:1; overflow-y:auto; background:var(--d-bg) }
+.db-msgs-wrap::-webkit-scrollbar { width:3px }
+.db-msgs-wrap::-webkit-scrollbar-thumb { background:var(--d-border); border-radius:4px }
+.db-input-area { padding:16px 24px 20px; border-top:1px solid var(--d-border); flex-shrink:0; background:var(--d-surface) }
+.db-input-box {
+  display:flex; align-items:center; gap:10px;
+  background:var(--d-surface2); border:1px solid var(--d-border);
+  border-radius:13px; padding:10px 12px 10px 18px; transition:border-color .2s;
+}
+.db-input-box:focus-within { border-color:var(--d-accent) }
+
+/* Side Panel */
+.db-side-panel {
+  width:310px; flex-shrink:0; overflow-y:auto;
+  padding:14px; display:flex; flex-direction:column; gap:10px;
+  background:var(--d-bg);
+}
+.db-side-panel::-webkit-scrollbar { width:3px }
+.db-side-panel::-webkit-scrollbar-thumb { background:var(--d-border) }
+
+/* Cards */
+.db-card { background:var(--d-surface); border:1px solid var(--d-border); border-radius:14px; padding:16px; transition:border-color .2s }
+.db-card:hover { border-color:rgba(59,130,246,.25) }
+.db-card-hdr { display:flex; align-items:center; gap:8px; margin-bottom:12px }
+.db-card-icon { font-size:15px }
+.db-card-title { flex:1; font-size:13px; font-weight:700; color:var(--d-text); font-family:'Clash Display',sans-serif; letter-spacing:-.2px }
+.db-card-badge { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.5px; background:var(--d-accent-glow); color:var(--d-accent); border:1px solid rgba(59,130,246,.25); border-radius:5px; padding:2px 7px }
+.db-card-badge.new { background:rgba(34,197,94,.1); color:#22c55e; border-color:rgba(34,197,94,.25) }
+.db-card-action { width:100%; margin-top:10px; padding:8px; background:var(--d-surface2); border:1px solid var(--d-border); border-radius:9px; font-family:'Cabinet Grotesk',sans-serif; font-size:12px; font-weight:700; color:var(--d-text2); cursor:pointer; transition:all .2s; text-align:center }
+.db-card-action:hover { border-color:var(--d-accent); color:var(--d-accent); background:var(--d-accent-glow) }
+.db-port-list { display:flex; flex-direction:column; gap:7px }
+.db-port-item { display:flex; align-items:center; gap:8px }
+.db-port-ticker { font-family:'DM Mono',monospace; font-size:11px; color:var(--d-text); font-weight:600; width:52px; flex-shrink:0 }
+.db-port-bar { flex:1; height:4px; background:var(--d-muted); border-radius:4px; overflow:hidden }
+.db-port-fill { height:100%; background:var(--d-accent); border-radius:4px }
+.db-port-pct { font-family:'DM Mono',monospace; font-size:10px; color:var(--d-text2); width:28px; text-align:right; flex-shrink:0 }
+.db-radar-list { display:flex; flex-direction:column; gap:6px }
+.db-radar-item { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:8px; border:1px solid var(--d-border); background:var(--d-surface2); cursor:pointer; transition:all .2s }
+.db-radar-item:hover { border-color:rgba(59,130,246,.3) }
+.db-radar-item.up .db-radar-arrow { color:#22c55e }
+.db-radar-item.neutral .db-radar-arrow { color:#f59e0b }
+.db-radar-ticker { font-family:'DM Mono',monospace; font-size:11px; color:var(--d-text); font-weight:700; width:46px; flex-shrink:0 }
+.db-radar-signal { flex:1; font-size:11px; color:var(--d-text2); line-height:1.3 }
+.db-radar-arrow { font-size:14px; font-weight:700; flex-shrink:0 }
+.db-indic-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px }
+.db-indic-item { background:var(--d-surface2); border:1px solid var(--d-border); border-radius:9px; padding:8px 10px }
+.db-indic-label { font-family:'DM Mono',monospace; font-size:9px; color:var(--d-text2); letter-spacing:.4px; display:block; margin-bottom:3px }
+.db-indic-val { font-family:'DM Mono',monospace; font-size:13px; font-weight:700; color:var(--d-text); display:block }
+.db-indic-val.up { color:#22c55e }
+.db-news-list { display:flex; flex-direction:column; gap:5px }
+.db-news-item { padding:8px 10px; border-radius:8px; cursor:pointer; border:1px solid transparent; transition:all .2s }
+.db-news-item:hover { background:var(--d-surface2); border-color:var(--d-border) }
+.db-news-src { font-family:'DM Mono',monospace; font-size:9px; color:var(--d-accent); letter-spacing:.4px; display:block; margin-bottom:2px; text-transform:uppercase }
+.db-news-text { font-size:12px; color:var(--d-text2); line-height:1.4 }
+
+/* ── Overlay panels ── */
+.db-overlay { position:absolute; inset:0; z-index:150; background:var(--d-bg); display:none; overflow-y:auto; flex-direction:column }
+.db-overlay.open { display:flex; animation:slideUp .25s ease }
+@keyframes slideUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+.db-overlay-inner { max-width:920px; width:100%; margin:0 auto; padding:28px 24px }
+.db-overlay-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px }
+.db-overlay-title { font-family:'Clash Display',sans-serif; font-size:20px; font-weight:700; color:var(--d-text) }
+.db-overlay-close { width:36px; height:36px; border-radius:10px; background:var(--d-surface2); border:1px solid var(--d-border); font-size:14px; color:var(--d-text2); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s }
+.db-overlay-close:hover { border-color:#ef4444; color:#ef4444 }
+.db-overlay-ia-cta { width:100%; margin-top:28px; padding:14px; background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(99,102,241,.1)); border:1px solid rgba(59,130,246,.25); border-radius:12px; cursor:pointer; transition:all .2s; font-family:'Cabinet Grotesk',sans-serif; font-weight:800; font-size:15px; color:var(--d-accent); text-align:center }
+.db-overlay-ia-cta:hover { background:rgba(59,130,246,.2); border-color:rgba(59,130,246,.4) }
+/* Modules inside overlay */
+.db-overlay .mod-ov-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px }
+.db-mod-card { background:var(--d-surface); border:1px solid var(--d-border); border-radius:14px; padding:18px; cursor:pointer; transition:all .2s }
+.db-mod-card:hover { border-color:rgba(59,130,246,.35); transform:translateY(-2px) }
+.db-mod-num { font-family:'DM Mono',monospace; font-size:9px; background:var(--d-accent-glow); color:var(--d-accent); border:1px solid rgba(59,130,246,.2); border-radius:5px; padding:2px 8px; letter-spacing:.5px }
+.db-mod-icon { font-size:24px; display:block; margin:10px 0 6px }
+.db-mod-title { font-family:'Clash Display',sans-serif; font-size:14px; font-weight:700; color:var(--d-text); margin-bottom:5px }
+.db-mod-desc { font-size:12px; color:var(--d-text2); line-height:1.5; margin-bottom:10px }
+.db-mod-meta { display:flex; gap:10px; padding-top:10px; border-top:1px solid var(--d-border) }
+.db-mod-meta span { font-size:11px; color:var(--d-text2) }
+.db-mod-cta { font-size:12px; color:var(--d-accent); font-weight:700; margin-top:8px }
+/* Plans inside overlay */
+.db-plan-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px }
+.db-plan-card { background:var(--d-surface); border:1px solid var(--d-border); border-radius:14px; padding:20px; position:relative; transition:all .2s }
+.db-plan-card:hover { border-color:rgba(59,130,246,.3) }
+.db-plan-card.featured { border-color:rgba(59,130,246,.4); background:var(--d-surface2) }
+.db-plan-badge { font-family:'DM Mono',monospace; font-size:10px; color:var(--d-text2); margin-bottom:10px }
+.db-plan-name { font-family:'Clash Display',sans-serif; font-size:18px; font-weight:700; color:var(--d-text); margin-bottom:14px }
+.db-plan-name span { color:var(--d-accent) }
+.db-plan-features { list-style:none; padding:0; margin:0 0 14px; display:flex; flex-direction:column; gap:6px }
+.db-plan-features li { font-size:12px; color:var(--d-text2); display:flex; gap:8px }
+.db-plan-check { color:var(--d-accent) }
+.db-plan-price { font-family:'Clash Display',sans-serif; font-size:36px; font-weight:700; color:var(--d-text); margin-bottom:4px }
+.db-plan-price sup { font-size:16px; vertical-align:super }
+.db-plan-period { font-size:11px; color:var(--d-text2); margin-bottom:14px }
+.db-plan-btn { width:100%; padding:11px; border-radius:10px; font-family:'Cabinet Grotesk',sans-serif; font-weight:800; font-size:13px; cursor:pointer; transition:all .2s; border:none }
+.db-plan-btn.outline { background:var(--d-surface2); border:1px solid var(--d-border); color:var(--d-text2) }
+.db-plan-btn.outline:hover { border-color:var(--d-accent); color:var(--d-accent) }
+.db-plan-btn.primary { background:var(--d-accent); color:#fff }
+.db-plan-btn.primary:hover { opacity:.9 }
+
+/* ── IA messages adapted to theme ── */
+.db-msgs-wrap .ia-msgs { padding:20px 24px; gap:10px; min-height:100%; display:flex; flex-direction:column }
+.db-msgs-wrap .ia-msg-who { color:var(--d-text2) }
+.db-msgs-wrap .ia-bubble { color:var(--d-text2); font-size:13.5px; line-height:1.58 }
+.db-msgs-wrap .ia-msg.user .ia-bubble { background:var(--d-user-bubble); border:1px solid rgba(59,130,246,.2); color:var(--d-text); border-radius:16px 16px 4px 16px; padding:10px 16px }
+.db-msgs-wrap .ia-msg.ai .ia-bubble { background:none; padding:0 }
+.db-msgs-wrap .ia-msg.ai .ia-bubble strong { color:var(--d-text) }
+.db-msgs-wrap .ia-msg.ai .ia-bubble h2 { color:var(--d-text); font-size:15px; margin:10px 0 4px; font-family:'Clash Display',sans-serif }
+.db-msgs-wrap .ia-msg.ai .ia-bubble h3 { color:var(--d-text); font-size:13.5px; margin:8px 0 3px; font-weight:700 }
+.db-msgs-wrap .ia-msg.ai .ia-bubble ul,.db-msgs-wrap .ia-msg.ai .ia-bubble ol { padding-left:18px; margin:5px 0; display:flex; flex-direction:column; gap:2px }
+.db-msgs-wrap .ia-msg.ai .ia-bubble li { color:var(--d-text2); font-size:13.5px; line-height:1.55 }
+.db-msgs-wrap .ia-msg.ai .ia-bubble hr { border:none; border-top:1px solid var(--d-border); margin:8px 0 }
+.db-msgs-wrap .ia-msg.ai .ia-bubble table { border-collapse:collapse; width:100%; margin:8px 0; font-size:13px }
+.db-msgs-wrap .ia-msg.ai .ia-bubble th { padding:6px 10px; border:1px solid var(--d-border); color:var(--d-text); font-weight:600; background:var(--d-surface2); text-align:left }
+.db-msgs-wrap .ia-msg.ai .ia-bubble td { padding:6px 10px; border:1px solid var(--d-border); color:var(--d-text2) }
+.db-msgs-wrap .ia-typing span { background:var(--d-text2) }
+.db-msgs-wrap .ia-sugg-chip { background:var(--d-surface); border:1px solid var(--d-border); color:var(--d-text2) }
+.db-msgs-wrap .ia-sugg-chip:hover { border-color:var(--d-accent); color:var(--d-accent); background:var(--d-accent-glow) }
+.db-input-area .ia-field { color:var(--d-text) }
+.db-input-area .ia-field::placeholder { color:var(--d-text2); opacity:.5 }
+.db-input-area .ia-send { background:var(--d-accent); color:#fff }
+.db-input-area .ia-send:hover { opacity:.85; transform:scale(1.06) }
+.db-input-area .ia-send:disabled { opacity:.35; cursor:not-allowed; transform:none }
+.db-input-area .ia-input-footer { color:var(--d-text2); opacity:.5; font-size:10px; text-align:center; margin-top:8px; font-family:'DM Mono',monospace }
+
+/* Mobile drawer */
+.db-mob-menu-btn { display:none; background:none; border:none; cursor:pointer; font-size:20px; color:var(--d-text2); padding:4px }
+.db-drawer-overlay { display:none; position:fixed; inset:0; z-index:300; background:rgba(0,0,0,.55); backdrop-filter:blur(2px) }
+.db-drawer-overlay.open { display:block }
+.db-drawer { position:fixed; top:0; left:0; bottom:0; width:280px; z-index:400; background:var(--d-surface); border-right:1px solid var(--d-border); display:flex; flex-direction:column; padding:20px 16px; transform:translateX(-100%); transition:transform .3s ease }
+.db-drawer.open { transform:translateX(0) }
+.db-drawer-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--d-border) }
+.db-drawer-nav { display:flex; flex-direction:column; gap:4px }
+.db-drawer-item { display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:10px; border:none; background:none; text-align:left; cursor:pointer; transition:all .2s; font-family:'Cabinet Grotesk',sans-serif; font-size:14px; font-weight:600; color:var(--d-text2) }
+.db-drawer-item:hover { background:var(--d-surface2); color:var(--d-text) }
+
+@media(max-width:960px){
+  .db-side-panel { display:none }
+  .db-mob-menu-btn { display:flex }
+  .dh-center { display:none }
+  .db-input-area { padding:12px 16px 16px }
+  .db-msgs-wrap .ia-msgs { padding:14px 16px }
+  .db-chat-top { padding:10px 16px }
 }
 @media(max-width:600px){
-  .ia-msgs { padding:12px 14px; gap:10px }
-  .ia-input-wrap { padding:10px 14px 16px }
+  .dh { padding:0 14px; gap:10px }
+  .dh-plan-badge,.dh-hello { display:none }
+  .db-chat-top { gap:8px }
 }
-
-/* ── App Mobile Nav ── */
-#page-dashboard .app-mobile-nav {
-  background:rgba(14,14,14,.98); border-top:1px solid rgba(255,255,255,.06);
-}
-#page-dashboard .app-mn-item { color:#444 }
-#page-dashboard .app-mn-item.active { color:#aaa }
-#page-dashboard .app-mn-icon { font-size:18px }
 
 </style>
 </head>
@@ -1539,214 +1495,181 @@ footer a:hover{color:var(--text)}
 </div>
 
 <!-- ══ APP PÓS-LOGIN ══ -->
-<div id="page-dashboard" class="page">
+<div id="page-dashboard" class="page" data-theme="dark">
 
-  <!-- Nav -->
-  <nav class="app-nav">
-    <button class="app-nav-logo" onclick="appNav('home')">
-      <svg width="28" height="22" viewBox="0 0 110 90" fill="none"><defs><linearGradient id="lg3" x1="0" y1="0" x2="110" y2="90" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#67e8f9"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6 L55 6 L55 18 L22 18 L22 39 L50 39 L50 51 L22 51 L22 72 L55 72 L55 84 L10 84 Z M55 6 L78 6 C92 6 100 15 100 27 C100 35 96 41 89 44 C96 47 100 54 100 63 C100 75 92 84 78 84 L55 84 L55 51 L78 51 C83 51 86 48 86 43 C86 38 83 35 78 35 L55 35 Z M55 18 L55 35 L78 35 C83 35 86 32 86 27 C86 22 83 18 78 18 Z" fill="url(#lg3)"/></svg>
-      <span style="font-family:'Clash Display',sans-serif;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Blueprint</span>
-    </button>
-    <div class="app-nav-links" style="display:none"></div>
-    <div class="app-nav-right">
-      <div class="credits-badge" id="creditsBadge" onclick="showBuyCreditsModal()">⚡ <span id="creditsNum">50</span> créditos</div>
-      <div class="app-user-chip">
-        <div class="db-avatar" id="dbAvatar">U</div>
-        <span class="db-username" id="dbUserName">Usuário</span>
-      </div>
-      <button class="app-logout-btn" onclick="handleLogout()" title="Sair">↩</button>
-    </div>
-  </nav>
-
-  <!-- ── HOME ── -->
-  <div id="app-home" class="app-section app-home-section">
-    <div class="app-home-content">
-      <div class="app-home-badge"><span class="db-ai-badge-dot"></span>Blueprint IA — Online</div>
-      <h1 class="app-home-title">Análise de investimentos.<br>Em tempo real.</h1>
-      <p class="app-home-sub">Ações, FIIs, renda fixa e criptos analisados com dados reais da B3. Sem achismo. Sem enrolação.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <button class="app-home-cta" onclick="appNav('ia')">Abrir Blueprint IA</button>
-        <button class="app-home-cta" style="background:transparent;border-color:rgba(255,255,255,.07);color:#444" onclick="appNav('modules')">Ver módulos</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── MÓDULOS ── -->
-  <div id="app-modules" class="app-section" style="display:none">
-    <div class="app-section-inner">
-      <div class="app-section-hdr">
-        <div class="app-section-title">Módulos do Curso</div>
-        <div class="app-section-sub">4 módulos gratuitos para construir sua base em investimentos</div>
-      </div>
-      <div class="mod-grid">
-        <div class="mod-card" onclick="openModule(1)">
-          <div class="mod-card-header"><span class="mc-num">MOD 01</span><span class="mod-status-available">✦ Disponível</span></div>
-          <span class="mod-card-icon">🚀</span>
-          <div class="mc-title">Investindo na B3</div>
-          <div class="mc-desc">Do zero ao primeiro investimento. Ações, Ibovespa e como abrir conta em uma corretora.</div>
-          <div class="mod-card-meta"><span class="mod-meta-item">📹 12 aulas</span><span class="mod-meta-item">⏱ ~2h</span></div>
-          <div class="mod-card-cta">Acessar módulo →</div>
-        </div>
-        <div class="mod-card" onclick="openModule(2)">
-          <div class="mod-card-header"><span class="mc-num">MOD 02</span><span class="mod-status-available">✦ Disponível</span></div>
-          <span class="mod-card-icon">🏢</span>
-          <div class="mc-title">Fundos Imobiliários</div>
-          <div class="mc-desc">Invista em imóveis sem ter um imóvel. FIIs, dividendos mensais e como analisar um fundo.</div>
-          <div class="mod-card-meta"><span class="mod-meta-item">📹 10 aulas</span><span class="mod-meta-item">⏱ ~1h40</span></div>
-          <div class="mod-card-cta">Acessar módulo →</div>
-        </div>
-        <div class="mod-card" onclick="openModule(3)">
-          <div class="mod-card-header"><span class="mc-num">MOD 03</span><span class="mod-status-available">✦ Disponível</span></div>
-          <span class="mod-card-icon">💰</span>
-          <div class="mc-title">Renda Fixa & Impostos</div>
-          <div class="mc-desc">Tesouro Direto, CDB, LCI e LCA. Quanto rende, como declarar e qual escolher com a Selic atual.</div>
-          <div class="mod-card-meta"><span class="mod-meta-item">📹 8 aulas</span><span class="mod-meta-item">⏱ ~1h20</span></div>
-          <div class="mod-card-cta">Acessar módulo →</div>
-        </div>
-        <div class="mod-card" onclick="openModule(4)">
-          <div class="mod-card-header"><span class="mc-num">MOD 04</span><span class="mod-status-available">✦ Disponível</span></div>
-          <span class="mod-card-icon">₿</span>
-          <div class="mc-title">Corretoras & Criptos</div>
-          <div class="mc-desc">Como escolher sua corretora, taxas e custódia. Introdução ao Bitcoin e criptoativos no Brasil.</div>
-          <div class="mod-card-meta"><span class="mod-meta-item">📹 9 aulas</span><span class="mod-meta-item">⏱ ~1h30</span></div>
-          <div class="mod-card-cta">Acessar módulo →</div>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:center;margin-top:32px">
-        <button class="app-home-cta" onclick="appNav('ia')" style="background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(14,165,233,.1));border:1px solid rgba(56,189,248,.25);font-size:15px;padding:14px 36px">⚡ Usar Blueprint IA com 50 créditos grátis →</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── PLANOS ── -->
-  <div id="app-plans" class="app-section" style="display:none">
-    <div class="app-section-inner">
-      <div class="app-section-hdr">
-        <div class="app-section-title">Planos</div>
-        <div class="app-section-sub">Simples, direto, sem pegadinha. Cancele quando quiser.</div>
-      </div>
-      <div class="plan-grid">
-        <div class="plan-card">
-          <div class="plan-badge badge-start">Mais em conta</div>
-          <div class="plan-name">Plano <span>Mensal</span></div>
-          <ul class="plan-features">
-            <li><span class="plan-check">✦</span>IA com dados em tempo real</li>
-            <li><span class="plan-check">✦</span>Análise de ações e FIIs</li>
-            <li><span class="plan-check">✦</span>Tira-dúvidas ilimitado</li>
-            <li><span class="plan-check">✦</span>Acesso aos 4 módulos</li>
-            <li><span class="plan-check">✦</span>Cancele quando quiser</li>
-          </ul>
-          <div class="plan-price"><sup>R$</sup>27<span style="font-size:22px">,99</span></div>
-          <div class="plan-period">por mês · cobrado mensalmente</div>
-          <button class="plan-btn outline" onclick="window.open('https://pay.hotmart.com/E105279724U?off=jve556ja','_blank')">Assinar agora</button>
-        </div>
-        <div class="plan-card featured">
-          <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0369a1,var(--blue));color:#fff;font-family:var(--mono);font-size:9px;padding:4px 14px;border-radius:100px;letter-spacing:1px;white-space:nowrap">✦ Melhor custo-benefício</div>
-          <div class="plan-badge badge-grow">Recomendado</div>
-          <div class="plan-name">Plano <span>Anual</span></div>
-          <ul class="plan-features">
-            <li><span class="plan-check">✦</span>Tudo do plano mensal</li>
-            <li><span class="plan-check">✦</span>Alertas de mercado</li>
-            <li><span class="plan-check">✦</span>Prioridade em novas features</li>
-            <li><span class="plan-check">✦</span>Suporte prioritário</li>
-            <li><span class="plan-check">✦</span>Acesso antecipado a novidades</li>
-          </ul>
-          <div class="plan-price"><sup>R$</sup>23<span style="font-size:22px">,90</span></div>
-          <div class="plan-period">por mês · R$286,80 cobrado anualmente</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--green);margin-bottom:12px">Economize R$50 por ano</div>
-          <button class="plan-btn primary" onclick="window.open('https://pay.hotmart.com/E105279724U?off=5tqdpmwm','_blank')">Quero o anual →</button>
-        </div>
-        <div class="plan-card">
-          <div class="plan-badge badge-scale">Sem recorrência</div>
-          <div class="plan-name">Plano <span>Teste 30 dias</span></div>
-          <ul class="plan-features">
-            <li><span class="plan-check">✦</span>Acesso completo por 30 dias</li>
-            <li><span class="plan-check">✦</span>Sem cobrança recorrente</li>
-            <li><span class="plan-check">✦</span>Todas as funcionalidades</li>
-            <li><span class="plan-check">✦</span>Ideal para experimentar</li>
-            <li><span class="plan-check">✦</span>Sem compromisso</li>
-          </ul>
-          <div class="plan-price"><sup>R$</sup>49<span style="font-size:22px">,90</span></div>
-          <div class="plan-period">pagamento único · sem recorrência</div>
-          <button class="plan-btn outline" onclick="window.open('https://pay.hotmart.com/E105279724U?off=ur6adiwt','_blank')">Quero testar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── B3BLUEPRINT IA ── -->
-  <div id="app-ia" class="app-section ia-section" style="display:none">
-
-    <!-- Sidebar -->
-    <div class="ia-sidebar">
-      <div class="ia-sidebar-head">
-        <div class="ia-sidebar-heading">Blueprint IA</div>
-      </div>
-      <button class="ia-new-btn" onclick="newIaChat()">
-        <span class="ia-new-btn-icon">+</span>
-        Novo Chat
+  <!-- HEADER -->
+  <header class="dh">
+    <div class="dh-left">
+      <button class="dh-logo" onclick="dhNav('chat')">
+        <svg width="26" height="20" viewBox="0 0 110 90" fill="none"><defs><linearGradient id="lg4" x1="0" y1="0" x2="110" y2="90" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#67e8f9"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6 L55 6 L55 18 L22 18 L22 39 L50 39 L50 51 L22 51 L22 72 L55 72 L55 84 L10 84 Z M55 6 L78 6 C92 6 100 15 100 27 C100 35 96 41 89 44 C96 47 100 54 100 63 C100 75 92 84 78 84 L55 84 L55 51 L78 51 C83 51 86 48 86 43 C86 38 83 35 78 35 L55 35 Z M55 18 L55 35 L78 35 C83 35 86 32 86 27 C86 22 83 18 78 18 Z" fill="url(#lg4)"/></svg>
+        <span class="dh-logo-text">Blueprint</span>
       </button>
-      <div class="ia-sidebar-section">Recentes</div>
-      <div class="ia-hist-item" id="iaHist1" style="display:none"><span class="ia-hist-dot"></span><span id="iaHist1Text"></span></div>
-      <div class="ia-hist-item" id="iaHist2" style="display:none"><span class="ia-hist-dot"></span><span id="iaHist2Text"></span></div>
-      <div class="ia-hist-item" id="iaHist3" style="display:none"><span class="ia-hist-dot"></span><span id="iaHist3Text"></span></div>
-      <div class="ia-sidebar-bottom">
-        <div>
-          <div class="ia-credits-label-s">Créditos</div>
-          <div class="ia-credits-val" id="iaCreditsCount">50</div>
-        </div>
-        <button class="ia-buy-s" onclick="showBuyCreditsModal()">+ Comprar</button>
+    </div>
+    <div class="dh-center">
+      <div class="dh-search-wrap">
+        <span class="dh-search-icon">⌕</span>
+        <input class="dh-search" id="dhSearchInput" placeholder="Buscar ativo (PETR4, BBAS3, FIIs...)" onkeydown="if(event.key==='Enter'&&this.value.trim()){sendSugg('Analise o ativo '+this.value.trim());this.value=''}">
       </div>
     </div>
-
-    <!-- Main Chat -->
-    <div class="ia-main">
-      <div class="ia-topbar">
-        <div class="ia-topbar-dot"></div>
-        <div class="ia-topbar-title">Blueprint IA</div>
-        <div class="ia-topbar-badge">ONLINE</div>
+    <div class="dh-right">
+      <button class="db-mob-menu-btn" onclick="openDrawer()">☰</button>
+      <div class="dh-credits" id="creditsBadge" onclick="showBuyCreditsModal()">
+        <span class="dh-credits-icon">⚡</span>
+        <span id="creditsNum">50</span>
+        <span class="dh-credits-label">créditos</span>
       </div>
-
-      <div class="ia-msgs" id="dbChatMessages">
-        <!-- Welcome message -->
-        <div class="ia-msg ai">
-          <div class="ia-msg-who">Blueprint IA</div>
-          <div class="ia-bubble">
-            Olá. Sou a <strong>Blueprint IA</strong> — especialista em investimentos brasileiros.<br>
-            Posso analisar ações, FIIs, renda fixa, criptos e ajudar a montar sua carteira com base em dados reais da B3.<br>
-            O que você quer saber?
+      <div class="dh-plan-badge">Free</div>
+      <div class="dh-user" id="dhUser" onclick="toggleDhDropdown(event)">
+        <div class="dh-avatar" id="dbAvatar">U</div>
+        <div class="dh-user-info">
+          <span class="dh-hello">Olá,</span>
+          <span class="dh-username" id="dbUserName">Usuário</span>
+        </div>
+        <span class="dh-chevron">▾</span>
+        <div class="dh-dropdown" id="dhDropdown">
+          <button class="dh-dd-item" onclick="dhNav('modules')"><span class="dh-dd-icon">◫</span>Revisar Módulos</button>
+          <button class="dh-dd-item" onclick="dhNav('plans')"><span class="dh-dd-icon">◉</span>Planos e Assinatura</button>
+          <button class="dh-dd-item" onclick="showBuyCreditsModal()"><span class="dh-dd-icon">⚡</span>Créditos / Recarregar</button>
+          <button class="dh-dd-item"><span class="dh-dd-icon">⚙</span>Configurações</button>
+          <div class="dh-dd-divider"></div>
+          <div class="dh-dd-theme">
+            <span class="dh-dd-theme-label">🌙 Modo Escuro</span>
+            <label class="dh-theme-sw"><input type="checkbox" id="themeToggle" checked onchange="toggleDashTheme(this)"><span class="dh-theme-track"></span></label>
           </div>
-          <div class="ia-suggs">
-            <div class="ia-sugg-chip" onclick="sendSugg('Analise a PETR4 — vale comprar agora?')">Analisar PETR4</div>
-            <div class="ia-sugg-chip" onclick="sendSugg('Qual o melhor CDB com a Selic a 14,75%?')">Melhor CDB</div>
-            <div class="ia-sugg-chip" onclick="sendSugg('Como montar uma carteira com R$1.000?')">Montar carteira</div>
-            <div class="ia-sugg-chip" onclick="sendSugg('FII ou imóvel físico — qual rende mais?')">FII vs Imóvel</div>
-            <div class="ia-sugg-chip" onclick="sendSugg('Vale investir em Bitcoin agora?')">Bitcoin</div>
-            <div class="ia-sugg-chip" onclick="sendSugg('O que é o Ibovespa e como funciona?')">Ibovespa</div>
+          <div class="dh-dd-divider"></div>
+          <button class="dh-dd-item dh-dd-logout" onclick="handleLogout()"><span class="dh-dd-icon">↩</span>Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="db-body">
+
+    <!-- LEFT: IA Chat -->
+    <div class="db-chat-panel">
+      <div class="db-chat-top">
+        <div class="db-chat-status"><span class="db-online-dot"></span>Blueprint IA — Online</div>
+        <div class="db-chat-actions">
+          <button class="db-chat-action-btn" onclick="newIaChat()">⊕ Novo chat</button>
+        </div>
+      </div>
+      <div class="db-msgs-wrap">
+        <div class="ia-msgs" id="dbChatMessages">
+          <div class="ia-msg ai">
+            <div class="ia-msg-who">Blueprint IA</div>
+            <div class="ia-bubble">Olá. Sou a <strong>Blueprint IA</strong> — especialista em investimentos brasileiros.<br>Posso analisar ações, FIIs, renda fixa, criptos e ajudar a montar sua carteira com base em dados reais da B3.<br>O que você quer saber?</div>
+            <div class="ia-suggs">
+              <div class="ia-sugg-chip" onclick="sendSugg('Analise a PETR4 — vale comprar agora?')">Analisar PETR4</div>
+              <div class="ia-sugg-chip" onclick="sendSugg('Qual o melhor CDB com a Selic a 14,75%?')">Melhor CDB</div>
+              <div class="ia-sugg-chip" onclick="sendSugg('Como montar uma carteira com R$1.000?')">Montar carteira</div>
+              <div class="ia-sugg-chip" onclick="sendSugg('FII ou imóvel físico — qual rende mais?')">FII vs Imóvel</div>
+              <div class="ia-sugg-chip" onclick="sendSugg('Vale investir em Bitcoin agora?')">Bitcoin</div>
+              <div class="ia-sugg-chip" onclick="sendSugg('O que é o Ibovespa e como funciona?')">Ibovespa</div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="ia-input-wrap">
-        <div class="ia-input-box">
-          <input class="ia-field" id="dbChatInput"
-            placeholder="Pergunte sobre ações, FIIs, renda fixa, cripto..."
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDbChat()}">
+      <div class="db-input-area">
+        <div class="db-input-box">
+          <input class="ia-field" id="dbChatInput" placeholder="Pergunte sobre ações, dividendos, estratégias..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDbChat()}">
           <button class="ia-send" id="dbSendBtn" onclick="sendDbChat()">↑</button>
         </div>
-        <div class="ia-input-footer">Blueprint IA · dados da B3 em tempo real · <span id="iaCreditsHint">80</span> créditos restantes</div>
+        <div class="ia-input-footer">Blueprint IA · dados da B3 · <span id="iaCreditsHint">50</span> créditos restantes</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Info Panel -->
+    <aside class="db-side-panel">
+      <div class="db-card">
+        <div class="db-card-hdr"><span class="db-card-icon">💼</span><span class="db-card-title">Carteira Sugerida</span><span class="db-card-badge">IA</span></div>
+        <div class="db-port-list">
+          <div class="db-port-item"><span class="db-port-ticker">PETR4</span><div class="db-port-bar"><div class="db-port-fill" style="width:25%"></div></div><span class="db-port-pct">25%</span></div>
+          <div class="db-port-item"><span class="db-port-ticker">MXRF11</span><div class="db-port-bar"><div class="db-port-fill" style="width:20%"></div></div><span class="db-port-pct">20%</span></div>
+          <div class="db-port-item"><span class="db-port-ticker">Tesouro</span><div class="db-port-bar"><div class="db-port-fill" style="width:30%;background:#22c55e"></div></div><span class="db-port-pct">30%</span></div>
+          <div class="db-port-item"><span class="db-port-ticker">BTC</span><div class="db-port-bar"><div class="db-port-fill" style="width:10%;background:#f59e0b"></div></div><span class="db-port-pct">10%</span></div>
+          <div class="db-port-item"><span class="db-port-ticker">CDB</span><div class="db-port-bar"><div class="db-port-fill" style="width:15%;background:#8b5cf6"></div></div><span class="db-port-pct">15%</span></div>
+        </div>
+        <button class="db-card-action" onclick="sendSugg('Monte uma carteira diversificada para mim')">Personalizar com IA →</button>
+      </div>
+      <div class="db-card">
+        <div class="db-card-hdr"><span class="db-card-icon">📡</span><span class="db-card-title">Radar de Oportunidades</span><span class="db-card-badge new">NOVO</span></div>
+        <div class="db-radar-list">
+          <div class="db-radar-item up" onclick="sendSugg('Analise a VALE3 — está em oportunidade de entrada?')"><span class="db-radar-ticker">VALE3</span><span class="db-radar-signal">Oportunidade de entrada</span><span class="db-radar-arrow">↑</span></div>
+          <div class="db-radar-item neutral" onclick="sendSugg('Analise o BBAS3 — vale esperar o suporte?')"><span class="db-radar-ticker">BBAS3</span><span class="db-radar-signal">Aguardar próximo suporte</span><span class="db-radar-arrow">→</span></div>
+          <div class="db-radar-item up" onclick="sendSugg('Analise o KNRI11 — o dividend yield está atrativo?')"><span class="db-radar-ticker">KNRI11</span><span class="db-radar-signal">DY atrativo 0,8%/mês</span><span class="db-radar-arrow">↑</span></div>
+        </div>
+        <button class="db-card-action" onclick="sendSugg('Quais as melhores oportunidades na B3 agora?')">Analisar com IA →</button>
+      </div>
+      <div class="db-card">
+        <div class="db-card-hdr"><span class="db-card-icon">📊</span><span class="db-card-title">Indicadores Econômicos</span></div>
+        <div class="db-indic-grid">
+          <div class="db-indic-item"><span class="db-indic-label">SELIC</span><span class="db-indic-val">14,75%</span></div>
+          <div class="db-indic-item"><span class="db-indic-label">CDI</span><span class="db-indic-val">14,65%</span></div>
+          <div class="db-indic-item"><span class="db-indic-label">IPCA</span><span class="db-indic-val">5,48%</span></div>
+          <div class="db-indic-item"><span class="db-indic-label">IBOV</span><span class="db-indic-val up">134.2k</span></div>
+          <div class="db-indic-item"><span class="db-indic-label">Dólar</span><span class="db-indic-val">R$5,68</span></div>
+          <div class="db-indic-item"><span class="db-indic-label">IGP-M</span><span class="db-indic-val">6,2%</span></div>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-card-hdr"><span class="db-card-icon">📰</span><span class="db-card-title">Notícias do Mercado</span></div>
+        <div class="db-news-list">
+          <div class="db-news-item" onclick="sendSugg('O que aconteceu com a Petrobras recentemente?')"><span class="db-news-src">Infomoney</span><span class="db-news-text">Petrobras anuncia dividendos acima do esperado</span></div>
+          <div class="db-news-item" onclick="sendSugg('Como o Fed impacta os investimentos no Brasil?')"><span class="db-news-src">Valor Econômico</span><span class="db-news-text">Fed mantém juros, Ibovespa reage positivamente</span></div>
+          <div class="db-news-item" onclick="sendSugg('O que é o Tesouro IPCA+ e vale investir agora?')"><span class="db-news-src">XP Investimentos</span><span class="db-news-text">Tesouro IPCA+ atinge maior rentabilidade em 2 anos</span></div>
+        </div>
+        <button class="db-card-action" onclick="sendSugg('Quais as principais notícias do mercado hoje?')">Ver análise da IA →</button>
+      </div>
+    </aside>
+
+    <!-- OVERLAY: Módulos -->
+    <div class="db-overlay" id="dbModulesOverlay">
+      <div class="db-overlay-inner">
+        <div class="db-overlay-hdr">
+          <div class="db-overlay-title">◫ Módulos do Curso</div>
+          <button class="db-overlay-close" onclick="dhNav('chat')">✕</button>
+        </div>
+        <div class="db-mod-ov-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px">
+          <div class="db-mod-card" onclick="openModule(1)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="db-mod-num">MOD 01</span><span style="font-size:10px;color:#22c55e;margin-left:auto">✦ Disponível</span></div><span class="db-mod-icon">🚀</span><div class="db-mod-title">Investindo na B3</div><div class="db-mod-desc">Do zero ao primeiro investimento. Ações, Ibovespa e como abrir conta em uma corretora.</div><div class="db-mod-meta"><span>📹 12 aulas</span><span>⏱ ~2h</span></div><div class="db-mod-cta">Acessar módulo →</div></div>
+          <div class="db-mod-card" onclick="openModule(2)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="db-mod-num">MOD 02</span><span style="font-size:10px;color:#22c55e;margin-left:auto">✦ Disponível</span></div><span class="db-mod-icon">🏢</span><div class="db-mod-title">Fundos Imobiliários</div><div class="db-mod-desc">Invista em imóveis sem ter um imóvel. FIIs, dividendos mensais e como analisar um fundo.</div><div class="db-mod-meta"><span>📹 10 aulas</span><span>⏱ ~1h40</span></div><div class="db-mod-cta">Acessar módulo →</div></div>
+          <div class="db-mod-card" onclick="openModule(3)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="db-mod-num">MOD 03</span><span style="font-size:10px;color:#22c55e;margin-left:auto">✦ Disponível</span></div><span class="db-mod-icon">💰</span><div class="db-mod-title">Renda Fixa & Impostos</div><div class="db-mod-desc">Tesouro Direto, CDB, LCI e LCA. Quanto rende, como declarar e qual escolher.</div><div class="db-mod-meta"><span>📹 8 aulas</span><span>⏱ ~1h20</span></div><div class="db-mod-cta">Acessar módulo →</div></div>
+          <div class="db-mod-card" onclick="openModule(4)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="db-mod-num">MOD 04</span><span style="font-size:10px;color:#22c55e;margin-left:auto">✦ Disponível</span></div><span class="db-mod-icon">₿</span><div class="db-mod-title">Corretoras & Criptos</div><div class="db-mod-desc">Como escolher sua corretora, taxas e custódia. Introdução ao Bitcoin e criptoativos.</div><div class="db-mod-meta"><span>📹 9 aulas</span><span>⏱ ~1h30</span></div><div class="db-mod-cta">Acessar módulo →</div></div>
+        </div>
+        <button class="db-overlay-ia-cta" onclick="dhNav('chat')">⚡ Usar Blueprint IA com 50 créditos grátis →</button>
+      </div>
+    </div>
+
+    <!-- OVERLAY: Planos -->
+    <div class="db-overlay" id="dbPlansOverlay">
+      <div class="db-overlay-inner">
+        <div class="db-overlay-hdr">
+          <div class="db-overlay-title">◉ Planos e Assinatura</div>
+          <button class="db-overlay-close" onclick="dhNav('chat')">✕</button>
+        </div>
+        <div class="db-plan-grid">
+          <div class="db-plan-card"><div class="db-plan-badge">Mais em conta</div><div class="db-plan-name">Plano <span>Mensal</span></div><ul class="db-plan-features"><li><span class="db-plan-check">✦</span>IA com dados em tempo real</li><li><span class="db-plan-check">✦</span>Análise de ações e FIIs</li><li><span class="db-plan-check">✦</span>Tira-dúvidas ilimitado</li><li><span class="db-plan-check">✦</span>Acesso aos 4 módulos</li><li><span class="db-plan-check">✦</span>Cancele quando quiser</li></ul><div class="db-plan-price"><sup>R$</sup>27<span style="font-size:22px">,99</span></div><div class="db-plan-period">por mês · cobrado mensalmente</div><button class="db-plan-btn outline" onclick="window.open('https://pay.hotmart.com/E105279724U?off=jve556ja','_blank')">Assinar agora</button></div>
+          <div class="db-plan-card featured" style="position:relative"><div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0369a1,#3b82f6);color:#fff;font-family:'DM Mono',monospace;font-size:9px;padding:4px 14px;border-radius:100px;letter-spacing:1px;white-space:nowrap">✦ Melhor custo-benefício</div><div class="db-plan-badge">Recomendado</div><div class="db-plan-name">Plano <span>Anual</span></div><ul class="db-plan-features"><li><span class="db-plan-check">✦</span>Tudo do plano mensal</li><li><span class="db-plan-check">✦</span>Alertas de mercado</li><li><span class="db-plan-check">✦</span>Prioridade em novas features</li><li><span class="db-plan-check">✦</span>Suporte prioritário</li><li><span class="db-plan-check">✦</span>Acesso antecipado</li></ul><div class="db-plan-price"><sup>R$</sup>23<span style="font-size:22px">,90</span></div><div class="db-plan-period">por mês · R$286,80/ano</div><div style="font-size:10px;color:#22c55e;margin-bottom:12px;font-family:'DM Mono',monospace">Economize R$50 por ano</div><button class="db-plan-btn primary" onclick="window.open('https://pay.hotmart.com/E105279724U?off=5tqdpmwm','_blank')">Quero o anual →</button></div>
+          <div class="db-plan-card"><div class="db-plan-badge">Sem recorrência</div><div class="db-plan-name">Plano <span>Teste 30 dias</span></div><ul class="db-plan-features"><li><span class="db-plan-check">✦</span>Acesso completo por 30 dias</li><li><span class="db-plan-check">✦</span>Sem cobrança recorrente</li><li><span class="db-plan-check">✦</span>Todas as funcionalidades</li><li><span class="db-plan-check">✦</span>Ideal para experimentar</li><li><span class="db-plan-check">✦</span>Sem compromisso</li></ul><div class="db-plan-price"><sup>R$</sup>49<span style="font-size:22px">,90</span></div><div class="db-plan-period">pagamento único · sem recorrência</div><button class="db-plan-btn outline" onclick="window.open('https://pay.hotmart.com/E105279724U?off=ur6adiwt','_blank')">Quero testar</button></div>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Mobile Nav -->
-  <div class="app-mobile-nav">
-    <div class="app-mn-inner">
-      <button class="app-mn-item" data-amn="home" onclick="appNav('home')"><span class="app-mn-icon">◈</span>Início</button>
-      <button class="app-mn-item" data-amn="modules" onclick="appNav('modules')"><span class="app-mn-icon">◫</span>Módulos</button>
-      <button class="app-mn-item" data-amn="plans" onclick="appNav('plans')"><span class="app-mn-icon">◉</span>Planos</button>
-      <button class="app-mn-item" data-amn="ia" onclick="appNav('ia')"><span class="app-mn-icon">◆</span>IA</button>
+  <!-- Mobile Drawer -->
+  <div class="db-drawer-overlay" id="dbDrawerOverlay" onclick="closeDrawer()"></div>
+  <div class="db-drawer" id="dbDrawer">
+    <div class="db-drawer-hdr">
+      <span style="font-family:'Clash Display',sans-serif;font-size:15px;font-weight:700;color:var(--d-text)">Menu</span>
+      <button style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--d-text2)" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="db-drawer-nav">
+      <button class="db-drawer-item" onclick="closeDrawer();dhNav('chat')"><span>💬</span>Blueprint IA</button>
+      <button class="db-drawer-item" onclick="closeDrawer();dhNav('modules')"><span>◫</span>Revisar Módulos</button>
+      <button class="db-drawer-item" onclick="closeDrawer();dhNav('plans')"><span>◉</span>Planos</button>
+      <button class="db-drawer-item" onclick="closeDrawer();showBuyCreditsModal()"><span>⚡</span>Créditos</button>
+      <button class="db-drawer-item" onclick="handleLogout()" style="color:#ef4444"><span>↩</span>Sair</button>
     </div>
   </div>
 
@@ -1919,7 +1842,7 @@ async function handleLogin(){
     populateUserUI(data.user,name);
     _authHandled=true;
     document.getElementById('loginSuccess').classList.add('show');
-    setTimeout(()=>{_authHandled=false;goTo('dashboard');appNav('modules');},1600);
+    setTimeout(()=>{_authHandled=false;goTo('dashboard');dhNav('chat');},1600);
   }catch(e){btn.classList.remove('loading');showError('loginError','Erro de conexão. Tente novamente.');}
 }
 
@@ -1946,7 +1869,7 @@ async function handleRegister(){
     populateUserUI(data.user,first);
     _authHandled=true;
     document.getElementById('registerSuccess').classList.add('show');
-    setTimeout(()=>{_authHandled=false;goTo('dashboard');appNav('modules');},1800);
+    setTimeout(()=>{_authHandled=false;goTo('dashboard');dhNav('chat');},1800);
   }catch(e){btn.classList.remove('loading');showError('registerError','Erro de conexão. Tente novamente.');}
 }
 
@@ -1982,7 +1905,7 @@ _supabase.auth.onAuthStateChange((event,session)=>{
     populateUserUI(user,name);
     if(!_authHandled&&!document.getElementById('page-dashboard').classList.contains('active')){
       goTo('dashboard');
-      appNav('modules');
+      dhNav('chat');
     }
   }
   if(event==='SIGNED_OUT') goTo('landing');
@@ -1992,19 +1915,45 @@ checkSession();
 
 // ── APP NAV ──
 function appNav(section){
-  // Show/hide each app section with correct display type
-  const home=document.getElementById('app-home');
-  const mods=document.getElementById('app-modules');
-  const plans=document.getElementById('app-plans');
-  const ia=document.getElementById('app-ia');
-  if(home)home.style.display=section==='home'?'flex':'none';
-  if(mods)mods.style.display=section==='modules'?'':'none';
-  if(plans)plans.style.display=section==='plans'?'':'none';
-  if(ia)ia.style.display=section==='ia'?'flex':'none';
-  // Active state on nav buttons
-  document.querySelectorAll('[data-anav]').forEach(b=>b.classList.toggle('active',b.dataset.anav===section));
-  document.querySelectorAll('[data-amn]').forEach(b=>b.classList.toggle('active',b.dataset.amn===section));
-  window.scrollTo(0,0);
+  // Compatibility alias → dhNav
+  dhNav(section==='ia'?'chat':section);
+}
+
+// ── DASHBOARD NAV ──
+function dhNav(section){
+  ['dbModulesOverlay','dbPlansOverlay'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.classList.remove('open');
+  });
+  if(section==='modules')document.getElementById('dbModulesOverlay')?.classList.add('open');
+  else if(section==='plans')document.getElementById('dbPlansOverlay')?.classList.add('open');
+}
+
+// ── DROPDOWN ──
+function toggleDhDropdown(e){
+  e.stopPropagation();
+  document.getElementById('dhUser')?.classList.toggle('open');
+}
+document.addEventListener('click',function(){
+  document.getElementById('dhUser')?.classList.remove('open');
+});
+
+// ── THEME ──
+function toggleDashTheme(el){
+  var dash=document.getElementById('page-dashboard');
+  var label=el.closest('.dh-dd-theme').querySelector('.dh-dd-theme-label');
+  if(!el.checked){dash.dataset.theme='light';if(label)label.textContent='☀️ Modo Claro';}
+  else{dash.dataset.theme='dark';if(label)label.textContent='🌙 Modo Escuro';}
+}
+
+// ── MOBILE DRAWER ──
+function openDrawer(){
+  document.getElementById('dbDrawer')?.classList.add('open');
+  document.getElementById('dbDrawerOverlay')?.classList.add('open');
+}
+function closeDrawer(){
+  document.getElementById('dbDrawer')?.classList.remove('open');
+  document.getElementById('dbDrawerOverlay')?.classList.remove('open');
 }
 
 // ── CREDITS SYSTEM ──
