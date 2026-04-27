@@ -898,6 +898,8 @@ footer a:hover{color:var(--text)}
 .db-msgs-wrap .ia-msg.ai .ia-bubble th { padding:6px 10px; border:1px solid var(--d-border); color:var(--d-text); font-weight:600; background:var(--d-surface2); text-align:left }
 .db-msgs-wrap .ia-msg.ai .ia-bubble td { padding:6px 10px; border:1px solid var(--d-border); color:var(--d-text2) }
 .db-msgs-wrap .ia-typing span { background:var(--d-text2) }
+.chat-history-sep { display:flex;align-items:center;gap:10px;margin:12px 0;color:var(--d-text2);font-size:11px;opacity:.5 }
+.chat-history-sep::before,.chat-history-sep::after { content:'';flex:1;height:1px;background:var(--d-border) }
 .db-msgs-wrap .ia-sugg-chip { background:var(--d-surface); border:1px solid var(--d-border); color:var(--d-text2) }
 .db-msgs-wrap .ia-sugg-chip:hover { border-color:var(--d-accent); color:var(--d-accent); background:var(--d-accent-glow) }
 .db-input-area .ia-field { color:var(--d-text) }
@@ -2073,7 +2075,10 @@ async function handleLogout(){
   chatHistory=[];
   userCredits=0;
   _userProfile=null;
-  goTo('landing');
+  // Restaurar mensagem de boas-vindas para o próximo login
+  const container=document.getElementById('dbChatMessages');
+  if(container&&_WELCOME_HTML)container.innerHTML=_WELCOME_HTML;
+  _doGoTo('landing');
 }
 
 // ── SESSÃO PERSISTENTE ──
@@ -2183,6 +2188,41 @@ async function loadUserProfile(userId){
       }
     }
   }catch(e){console.warn('loadUserProfile:',e);}
+  // Carregar histórico de conversa do banco em paralelo
+  await loadChatHistory(userId);
+}
+
+const _WELCOME_HTML=document.getElementById('dbChatMessages')?.innerHTML||'';
+
+async function loadChatHistory(userId){
+  if(!userId)return;
+  try{
+    const{data,error}=await _supabase
+      .from('chat_messages')
+      .select('role,content,created_at')
+      .eq('user_id',userId)
+      .order('created_at',{ascending:true})
+      .limit(40);
+    if(error||!data||data.length===0)return;
+    // Limpar mensagem de boas-vindas e chips
+    const container=document.getElementById('dbChatMessages');
+    container.innerHTML='';
+    // Separador visual
+    const sep=document.createElement('div');
+    sep.className='chat-history-sep';
+    sep.textContent='Conversa anterior';
+    container.appendChild(sep);
+    // Renderizar mensagens e popular chatHistory
+    chatHistory=[];
+    data.forEach(function(msg){
+      var type=msg.role==='user'?'user':'ai';
+      var text=type==='ai'?renderMarkdown(stripEmojis(msg.content)):msg.content;
+      addMsg(type,text);
+      chatHistory.push({role:msg.role,content:msg.content});
+    });
+    // Manter chatHistory nos últimos 20
+    if(chatHistory.length>20)chatHistory=chatHistory.slice(-20);
+  }catch(e){console.warn('loadChatHistory:',e);}
 }
 
 function openOnboarding(closeable){
