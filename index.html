@@ -2011,11 +2011,13 @@ function populateUserUI(user,name){
 let _authHandled=false;
 
 // ── LOGIN REAL (SUPABASE) ──
+const _emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 async function handleLogin(){
   hideError('loginError');
   const email=document.getElementById('loginEmail').value.trim();
   const pass=document.getElementById('loginPassword').value;
-  if(!email)return showError('loginError','Digite seu e-mail.');
+  if(!email||!_emailRe.test(email))return showError('loginError','Digite um e-mail válido.');
   if(!pass)return showError('loginError','Digite sua senha.');
   const btn=document.getElementById('loginBtn');
   btn.classList.add('loading');
@@ -2044,7 +2046,7 @@ async function handleRegister(){
   if(!last)return showError('registerError','Digite seu sobrenome.');
   if(!birth)return showError('registerError','Informe sua data de nascimento.');
   if(!isOver18(birth))return showError('registerError','Você precisa ter pelo menos 18 anos.');
-  if(!email)return showError('registerError','E-mail inválido.');
+  if(!email||!_emailRe.test(email))return showError('registerError','Digite um e-mail válido.');
   if(!pass||pass.length<8)return showError('registerError','Senha deve ter pelo menos 8 caracteres.');
   const btn=document.getElementById('registerBtn');
   btn.classList.add('loading');
@@ -2516,6 +2518,8 @@ async function sendDbChat(){
   input.value='';input.disabled=true;btn.disabled=true;
   addMsg('user',text);
   chatHistory.push({role:'user',content:text});
+  // Manter apenas as últimas 20 mensagens (10 pares) para não inflar o payload
+  if(chatHistory.length>20) chatHistory=chatHistory.slice(-20);
   const tid=addTyping();
   try{
     const reply=await callBlueprintIA(text,chatHistory.slice(0,-1));
